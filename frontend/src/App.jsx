@@ -1,24 +1,24 @@
-import { Routes, Route } from "react-router";
-import AppLayout from "./frontend/layouts/AppLayout";
-import HomePage from "./frontend/pages/Home/HomePage";
-import BookList from "./frontend/pages/Home/BookList";
-import BookDetail from "./frontend/pages/WishList/BookDetail";
-import MyPage from "./frontend/pages/WishList/MyPage";
-import LikeList from "./frontend/pages/WishList/LikeList";
-import MyLibrary from "./frontend/pages/Library/MyLibrary";
-import MyLibraryDetail from "./frontend/pages/Library/MyLibraryDetail";
-import SignIn from "./frontend/pages/Login/SignIn";
-import SignUp from "./frontend/pages/Login/SignUp";
-import MeetingList from "./frontend/pages/Meeting/MeetingList";
-import MeetingDetail from "./frontend/pages/Meeting/MeetingDetail";
-import CreateMeeting from "./frontend/pages/Meeting/CreateMeeting";
-import RentalList from "./frontend/pages/Rental/RentalList";
-import RentalDetail from "./frontend/pages/Rental/RentalDetail";
-import Recommend from "./frontend/pages/Home/Recommend";
-import Footer from "./frontend/layouts/Footer";
+import { Routes, Route } from "react-router-dom";
+import AppLayout from "./layouts/AppLayout";
+import HomePage from "./pages/Home/HomePage";
+import BookList from "./pages/Home/BookList";
+import BookDetail from "./pages/WishList/BookDetail";
+import MyPage from "./pages/WishList/MyPage";
+import LikeList from "./pages/WishList/LikeList";
+import MyLibrary from "./pages/Library/MyLibrary";
+import MyLibraryDetail from "./pages/Library/MyLibraryDetail";
+import SignIn from "./pages/Login/SignIn";
+import SignUp from "./pages/Login/SignUp";
+import MeetingList from "./pages/Meeting/MeetingList";
+import MeetingDetail from "./pages/Meeting/MeetingDetail";
+import CreateMeeting from "./pages/Meeting/CreateMeeting";
+import RentalList from "./pages/Rental/RentalList";
+import RentalDetail from "./pages/Rental/RentalDetail";
+import Recommend from "./pages/Home/Recommend";
+import Footer from "./layouts/Footer";
+import NotFound from "./pages/NotFound/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./frontend/styles/App.css";
-import NotFound from "./frontend/pages/NotFound/NotFound";
+import "./styles/App.css";
 
 function App() {
   return (
