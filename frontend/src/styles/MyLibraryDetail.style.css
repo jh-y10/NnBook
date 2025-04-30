@@ -1,0 +1,9 @@
+.libraryDetail {
+  border: 1px solid black;
+  font-family: "MaruBuri" serif;
+  height: 50vh;
+}
+
+.progressBar {
+  width: 70%;
+}
