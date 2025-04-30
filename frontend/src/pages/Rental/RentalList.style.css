@@ -1,0 +1,29 @@
+.rental-list {
+    font-size: 1.75rem;
+}
+
+.rental-search {
+    background-color: #e3dcd2 !important;
+    border-color: #e3dcd2 !important;
+    color: #333 !important;               
+ }
+  
+.rental-search:hover,
+.rental-search:focus {
+    background-color: #d8c8bf !important; 
+    border-color: #d8c8bf !important;
+    color: #222 !important;
+}
+
+@media (max-width: 768px) {
+    .rental-search-input {
+      width: 20ch;
+    }
+  }
+  
+
+@media (max-width: 576px) {
+    .rental-search-input {
+      width: 12ch;
+    }
+  }

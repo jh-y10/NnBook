@@ -13,8 +13,8 @@ const BookCard = () => {
     if (error)     return <p>{error.message}</p>;
   
     return (
-        <Container fluid className="py-4">
-            <Row xs={5} className="gx-1 gy-1">
+        <Container className="py-4">
+            <Row xs={1} sm={3} md={5} className="gx-1 gy-1">
             {books.map((book, idx) => (
             <Col  key={idx}>
                 <img
