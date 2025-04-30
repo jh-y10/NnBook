@@ -1,9 +1,13 @@
 import React from 'react'
+import BookCard from '../../common/BookCard/BookCard';
+
+
 
 const RentalList = () => {
-  return (
-    <div>렌탈</div>
+  return(
+  <div><BookCard /></div>
   )
+  
 }
 
 export default RentalList
