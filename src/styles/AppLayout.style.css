@@ -1,0 +1,39 @@
+.custom-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3dcd2;
+  padding: 0.5rem 0;
+}
+
+.custom-container {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+  color: #4b4b4b;
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #d8f69e;
+  color: #4b4b4b;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav .nav-link {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+}
