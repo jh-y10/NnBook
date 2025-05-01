@@ -121,7 +121,7 @@ function SignUp() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5050/api/auth/signup", {
+      const res = await axios.post("http://localhost:5050/api/auth/register", {
         email: form.email,
         password: form.password,
         nickname: form.nickname,
@@ -147,8 +147,7 @@ function SignUp() {
 
       <form onSubmit={handleSubmit}>
         <input
-          className="input-underline"
-          type="name"
+          className="input-underline" 
           name="name"
           placeholder="이름"
           value={form.name}

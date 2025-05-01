@@ -1,23 +1,22 @@
-import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
-import HomePage from "./pages/Home/HomePage";
 import BookList from "./pages/Home/BookList";
-import BookDetail from "./pages/WishList/BookDetail";
-import MyPage from "./pages/WishList/MyPage";
-import LikeList from "./pages/WishList/LikeList";
+import HomePage from "./pages/Home/HomePage";
+import Recommend from "./pages/Home/Recommend";
 import MyLibrary from "./pages/Library/MyLibrary";
 import MyLibraryDetail from "./pages/Library/MyLibraryDetail";
 import SignIn from "./pages/Login/SignIn";
 import SignUp from "./pages/Login/SignUp";
-import MeetingList from "./pages/Meeting/MeetingList";
-import MeetingDetail from "./pages/Meeting/MeetingDetail";
 import CreateMeeting from "./pages/Meeting/CreateMeeting";
-import RentalList from "./pages/Rental/RentalList";
-import RentalDetail from "./pages/Rental/RentalDetail";
-import Recommend from "./pages/Home/Recommend";
-import Footer from "./layouts/Footer";
+import MeetingDetail from "./pages/Meeting/MeetingDetail";
+import MeetingList from "./pages/Meeting/MeetingList";
 import NotFound from "./pages/NotFound/NotFound";
-import "bootstrap/dist/css/bootstrap.min.css";
+import RentalDetail from "./pages/Rental/RentalDetail";
+import RentalList from "./pages/Rental/RentalList";
+import BookDetail from "./pages/WishList/BookDetail";
+import LikeList from "./pages/WishList/LikeList";
+import MyPage from "./pages/WishList/MyPage";
 import "./styles/App.css";
 
 function App() {
@@ -57,8 +56,6 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-      <Footer />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import LogoImg from "../assets/NnBook-Logo.png";
 import "../styles/AppLayout.style.css";
+import Footer from "./Footer";
 
 const AppLayout = () => {
   return (
@@ -15,8 +16,8 @@ const AppLayout = () => {
         sticky="top"
       >
         <Container className="custom-container">
-          <Navbar.Brand as={Link} to="/">
-            <img src={LogoImg} alt="NnBook Logo" className="logo-img" />
+          <Navbar.Brand as={Link} to="/" className="navbar-brand">
+            <img src={LogoImg} alt="NnBook Logo" className="navbar-logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -41,6 +42,7 @@ const AppLayout = () => {
         </Container>
       </Navbar>
       <Outlet />
+      <Footer />
     </div>
   );
 };
