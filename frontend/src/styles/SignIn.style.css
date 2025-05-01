@@ -51,3 +51,9 @@
   background-color: #d8f69e;
   border-color: #d8f69e;
 }
+
+.logo-img img {
+  max-width: 160px;
+  height: auto;
+  display: block;
+}
