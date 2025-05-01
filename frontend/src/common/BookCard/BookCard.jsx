@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import './BookCard.style.css'
+import '/src/styles/BookCard.style.css';
 import PropTypes from 'prop-types'
 
 export default function BookCard({ book, onClick }) {

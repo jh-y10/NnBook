@@ -1,7 +1,6 @@
 import React, { useState, useEffect }  from 'react'
-import { useParams } from 'react-router-dom'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
-import './RentalDetail.style.css'
+import '../../styles/RentalDetail.style.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 

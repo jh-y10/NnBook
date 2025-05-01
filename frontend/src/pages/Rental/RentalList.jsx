@@ -1,7 +1,7 @@
 import React, { useState }  from 'react'
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap'
 import BookCard from '../../common/BookCard/BookCard';
-import './RentalList.style.css'
+import '../../styles/RentalList.style.css'
 import { useNavigate } from 'react-router-dom'
 import useBooks from '../../hooks/useBooks'
 
