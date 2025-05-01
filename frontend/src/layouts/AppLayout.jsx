@@ -3,10 +3,11 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import LogoImg from "../assets/NnBook-Logo.png";
 import "./AppLayout.style.css";
+import Footer from'./Footer'
 
 const AppLayout = () => {
   return (
-    <div>
+    <div className="app-container">
       <Navbar
         expand="lg"
         className="custom-navbar"
@@ -41,6 +42,7 @@ const AppLayout = () => {
         </Container>
       </Navbar>
       <Outlet />
+      <Footer />
     </div>
   );
 };

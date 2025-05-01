@@ -15,7 +15,6 @@ import CreateMeeting from "./pages/Meeting/CreateMeeting";
 import RentalList from "./pages/Rental/RentalList";
 import RentalDetail from "./pages/Rental/RentalDetail";
 import Recommend from "./pages/Home/Recommend";
-import Footer from "./layouts/Footer";
 import NotFound from "./pages/NotFound/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.css";
@@ -58,7 +57,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <Footer />
+      
     </div>
   );
 }
