@@ -1,41 +1,75 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React from "react";
 import { Carousel } from "react-bootstrap";
+import useBooks from "../../hooks/useBooks";
+import "../../styles/BookCarousel.style.css";
+
+const chunkArray = (array, size) => {
+  const result = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+};
 
 const BookCarousel = () => {
-  const [books, setBooks] = useState([]);
+  const { data: books, isLoading, error } = useBooks();
 
-  useEffect(() => {
-    const fetchBestsellers = async () => {
-      try {
-        const res = await axios.get("/api/aladin/bestsellers");
-        setBooks(res.data.item || []);
-      } catch (error) {
-        console.error("알라딘 API 호출 실패", error);
-      }
-    };
+  if (isLoading) return <p>로딩 중…</p>;
+  if (error) return <p>{error.message}</p>;
+  if (!books || books.length === 0) return null;
 
-    fetchBestsellers();
-  }, []);
+  // 도서 8개씩 묶기
+  const groupedBooks = chunkArray(books, 4);
 
-  if (!books.length) return <p>도서 정보를 불러오는 중입니다...</p>;
+  // 상단 하단 따로 분리
+  const topChunks = groupedBooks.filter((_, i) => i % 2 === 0);
+  const bottomChunks = groupedBooks.filter((_, i) => i % 2 === 1);
 
   return (
-    <div className="mt-5">
-      <h3 className="mb-3">📚 인기 도서</h3>
-      <Carousel>
-        {books.map((book) => (
-          <Carousel.Item key={book.itemId}>
-            <img
-              className="d-block mx-auto"
-              src={book.cover}
-              alt={book.title}
-              style={{ maxHeight: "300px" }}
-            />
-            <Carousel.Caption>
-              <h5>{book.title}</h5>
-              <p>{book.author}</p>
-            </Carousel.Caption>
+    <div className="book-carousel-wrapper mt-5">
+      <Carousel interval={null} indicators={false} controls>
+        {topChunks.map((group, idx) => (
+          <Carousel.Item key={`top-${idx}`}>
+            <div className="book-row">
+              {group.map((book, i) => (
+                <div className="book-card" key={book.link || i}>
+                  <a href={book.link} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={`/api/image-proxy?url=${encodeURIComponent(
+                        book.cover.replace("/cover500/", "/coversum/")
+                      )}`}
+                      alt={book.title}
+                    />
+                    <p className="book-title">{book.title}</p>
+                    <small className="book-author">{book.author}</small>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+
+      {/* 아래쪽 캐러셀 */}
+      <Carousel interval={null} indicators={false} controls className="mt-4">
+        {bottomChunks.map((group, idx) => (
+          <Carousel.Item key={`bottom-${idx}`}>
+            <div className="book-row">
+              {group.map((book, i) => (
+                <div className="book-card" key={book.link || i}>
+                  <a href={book.link} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={`/api/image-proxy?url=${encodeURIComponent(
+                        book.cover.replace("/cover500/", "/coversum/")
+                      )}`}
+                      alt={book.title}
+                    />
+                    <p className="book-title">{book.title}</p>
+                    <small className="book-author">{book.author}</small>
+                  </a>
+                </div>
+              ))}
+            </div>
           </Carousel.Item>
         ))}
       </Carousel>
