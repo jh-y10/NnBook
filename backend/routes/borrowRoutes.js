@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/reading", getReading);
 
 router.get("/reading", (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   res.json({ message: "조회 성공" });
 });
 

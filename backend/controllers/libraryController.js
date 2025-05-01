@@ -8,7 +8,7 @@ import {
 
 //읽는중인 책
 export const getReading = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   try {
     const reading = await findReadingBooks(ownerEmail, holderEmail);
     res.status(200).json(reading);
@@ -20,7 +20,7 @@ export const getReading = async (req, res) => {
 
 //다읽은책
 export const getFinished = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   try {
     const finished = await findFinishedBooks(ownerEmail, holderEmail);
     res.status(200).json(finished);
@@ -32,7 +32,7 @@ export const getFinished = async (req, res) => {
 
 //빌려준 책
 export const getLendedBooks = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   try {
     const finished = await findLendedBooks(ownerEmail);
     res.status(200).json(finished);
