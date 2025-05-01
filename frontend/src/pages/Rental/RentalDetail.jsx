@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React  from 'react'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import '../../styles/RentalDetail.style.css'
 import { useLocation, useNavigate } from 'react-router-dom'
