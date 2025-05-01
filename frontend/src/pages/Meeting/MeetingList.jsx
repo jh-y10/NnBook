@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
+import ReactPaginate from "react-paginate";
 import "../../styles/MeetingList.style.css";
 
 const MeetingList = () => {
@@ -12,6 +13,8 @@ const MeetingList = () => {
   const goToCreateMeeting = () => {
     navigate("/meeting/create");
   };
+
+  const handlePageClick = () => {};
 
   return (
     <Container>
@@ -46,8 +49,31 @@ const MeetingList = () => {
               </tr>
             </tbody>
           </table>
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount="5"
+            previousLabel="<"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            containerClassName="pagination"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
+            forcePage="0"
+          />
           <div className="add-button-area">
-            <Button onClick={goToCreateMeeting}>글쓰기</Button>
+            <Button type="button" size="lg" onClick={goToCreateMeeting}>
+              글쓰기
+            </Button>
           </div>
         </Col>
       </Row>
