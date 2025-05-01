@@ -21,16 +21,5 @@ export default function BookCard({ book, onClick }) {
   )
 }
 
-BookCard.propTypes = {
-  book: PropTypes.shape({
-    id:     PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    cover:  PropTypes.string.isRequired,
-    title:  PropTypes.string.isRequired,
-    author: PropTypes.string,
-  }).isRequired,
-  onClick: PropTypes.func,
-}
 
-BookCard.defaultProps = {
-  onClick: null,
-}
+export default BookCard

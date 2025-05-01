@@ -1,11 +1,15 @@
-// backend/controllers/authController.js
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUser, findUserByEmail } from "../models/userModel.js";
+import {
+  createUser,
+  findUserByEmail,
+  findAllUsers,
+  createFavGenre,
+} from "../models/userModel.js";
 
+//회원가입
 export const register = async (req, res) => {
-  const { name, email, password, location } = req.body;
+  const { email, name, password, location, genre } = req.body;
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
@@ -13,7 +17,9 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    await createUser(name, email, hashedPassword, location);
+    await createUser(email, name, hashedPassword, location);
+    //관심장르 설정
+    await Promise.all(genre.map((g) => createFavGenre(email, g)));
 
     res.status(201).json({ message: "회원가입 성공!" });
   } catch (error) {
@@ -22,6 +28,7 @@ export const register = async (req, res) => {
   }
 };
 
+//로그인
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -49,5 +56,16 @@ export const login = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "서버 에러" });
+  }
+};
+
+//사용자 조회
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await findAllUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("사용자 조회 실패:", error);
+    res.status(500).json({ message: "사용자 조회 중 오류 발생" });
   }
 };

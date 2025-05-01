@@ -1,15 +1,14 @@
 import axios from "axios";
 
-const API_KEY =import.meta.env.VITE_ALADIN_API_KEY;
-
+const API_KEY = import.meta.env.VITE_ALADIN_API_KEY;
 
 //console.log("Aladin API Key:", API_KEY);
 //console.log("Aladin Base URL:", BASE_URL);
 const api = axios.create({
-  baseURL: "/api",  
-  timeout:5000,
+  baseURL: "/api",
+  timeout: 5000,
   params: {
-    ttbkey: API_KEY, 
+    ttbkey: API_KEY,
     Output: "JS",
     Version: "20131101",
   },

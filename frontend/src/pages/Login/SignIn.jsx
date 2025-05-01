@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SignIn.style.css";
+import LogoImg from "../../assets/NnBook-Logo.png";
+import "../../styles/SignIn.style.css";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -33,7 +34,13 @@ function SignIn() {
 
   return (
     <div className="signin-container">
-      <h2 className="mb-4">로그인</h2>
+      <div
+        className="logo-img"
+        onClick={() => navigate("/")}
+        style={{ cursor: "pointer" }}
+      >
+        <img src={LogoImg} alt="NnBook 로고" />
+      </div>
       <form onSubmit={handleSubmit} className="signin-form">
         <div className="mb-3">
           <label className="form-label">이메일</label>

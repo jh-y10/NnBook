@@ -1,43 +1,96 @@
-.book-footer {
-  margin-top: auto;
-  width: 100%;
+.footer {
   background-color: #e3dcd2;
-  padding: 2rem 0;
-  border-top: 1px solid #e2d5c8;
+  border-top: 1px solid #e3dcd2;
+  color: #4b4b4b;
+  padding: 3rem 1rem 2rem;
+  font-size: 14px;
 }
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+.footer-inner {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  text-align: left;
 }
-.footer-left h3 {
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.footer-logo {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+  font-size: 1rem;
+  color: #4b4b4b;
+}
+
+.footer-social {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.social-icon {
+  background-color: #e3dcd2;
+  padding: 0.5rem;
+  border-radius: 40%;
+  transition: background-color 0.3s;
+  cursor: default;
+}
+
+.social-icon:hover {
+  border-radius: 40%;
+  background-color: #d8f69e;
+}
+
+.footer-links p {
   margin: 0;
-  font-size: 1.5rem;
-  color: #7f5a38;
-}
-.footer-left p {
-  margin: 0.25rem 0;
-  color: #a68f78;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-.footer-links a {
-  margin: 0 0.75rem;
-  color: #7f5a38;
-  text-decoration: none;
-}
-.footer-links a:hover {
-  text-decoration: underline;
+.footer-contact {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
 }
 
-.footer-social a {
-  margin: 0 0.5rem;
-  color: #7f5a38;
-  font-size: 1.25rem;
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 13px;
+  border-top: 1px solid #e3dcd2;
+  padding-top: 1rem;
 }
-.footer-social a:hover {
-  color: #a68f78;
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    align-items: center;
+  }
+
+  .footer-links p {
+    text-align: center;
+  }
+
+  .footer-info {
+    text-align: center;
+  }
 }

@@ -1,10 +1,11 @@
 import express from "express";
-import { login, register } from "../controllers/authController.js";
+import { login, register, getAllUsers } from "../controllers/authController.js";
 
 const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+router.get("/getusers", getAllUsers);
 
 /**
  * @swagger
@@ -78,7 +79,7 @@ router.post("/login", (req, res) => {
  *                   type: string
  *                   example: 회원가입 성공
  */
-router.post("/signup", (req, res) => {
+router.post("/register", (req, res) => {
   const { name, email, password } = req.body;
   res.status(201).json({ message: "회원가입 성공", name, email });
 });
