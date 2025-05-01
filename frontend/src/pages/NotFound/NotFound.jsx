@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import "../../styles/NotFound.style.css";
 
 const NotFound = () => {
-  return (
-    <div>NotFound</div>
-  )
-}
+  return <div className="notfound"></div>;
+};
 
-export default NotFound
+export default NotFound;

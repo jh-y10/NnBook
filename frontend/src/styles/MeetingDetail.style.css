@@ -68,9 +68,42 @@ body {
   box-sizing: border-box;
 }
 
-.recommend-title {
+.meeting-detail {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid #e3dcd2;
+  border-radius: 4px;
   margin-top: 30px;
-  font-family: "MaruBuriBold", serif;
+  font-family: "MaruBuriSemiBold", serif;
+}
+
+.meeting-detail h1 {
+  padding: 20px;
+  border-bottom: 1px solid #e3dcd2;
   font-size: 26px;
   font-weight: 600;
+  background-color: #e3dcd2;
+}
+
+.meeting-desc {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.join-button-box {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+
+.join-button-box button {
+  border: none;
+  background-color: #f6a89e;
+}
+
+.join-button-box button:hover,
+.join-button-box button:active,
+.join-button-box button:focus {
+  background-color: #d8f69e !important;
+  color: #4b4b4b !important;
 }
