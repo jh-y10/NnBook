@@ -14,16 +14,39 @@
     border-color: #d8c8bf !important;
     color: #222 !important;
 }
+.rental-search-input {
+  width: 100%;
+  max-width: 100%;
+}
 
 @media (max-width: 768px) {
-    .rental-search-input {
-      width: 20ch;
-    }
+  .rental-search-input {
+    max-width: 20ch;
   }
-  
+}
 
 @media (max-width: 576px) {
-    .rental-search-input {
-      width: 12ch;
-    }
+  .rental-search-input {
+    max-width: 20ch;
+    margin-left: 0.5rem;
   }
+
+  .justify-content-center {
+    justify-content: center !important;
+  }
+
+  .book-cover-img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin-left: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .book-cover-img + h6,
+  .book-cover-img + h6 + p {
+    text-align: center;
+    margin-left: 1.5rem;
+    margin-right: 0.5rem;
+  }
+}

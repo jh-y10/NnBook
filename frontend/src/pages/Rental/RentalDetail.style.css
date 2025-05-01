@@ -1,0 +1,47 @@
+.book-detail-card {
+  width: 220px;      
+  margin: 0 auto;
+  margin-top: 1rem;     
+}
+
+.book-detail-card .book-cover {
+  width: 100%;
+  height: auto;       
+  object-fit: cover; 
+}
+  
+.book-detail-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+.book-detail-desc {
+    line-height: 1.6;
+    color: #444;
+  }
+
+.rental-detail {
+    background-color: #e3dcd2 !important;
+    border-color:     #e3dcd2 !important;
+    color:            #333    !important;               
+  }
+  
+.rental-detail:hover,
+.rental-detail:focus {
+    background-color: #d8c8bf !important; 
+    border-color:     #d8c8bf !important;
+    color:            #222    !important;
+  }
+
+@media (max-width: 576px) {
+  .book-detail-card {
+      width: 150px;    
+    }
+  }
+  
+@media (min-width: 577px) and (max-width: 768px) {
+  .book-detail-card {
+      width: 180px;
+    }
+  }
