@@ -1,9 +1,9 @@
 .libraryDetailContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  height: 100vh;
   color: #4b4b4b;
 }
 
@@ -42,6 +42,15 @@
   justify-content: space-between;
   border-left: 1px solid rgba(227, 220, 210, 0.5);
   margin-left: 2rem;
+}
+
+.libraryDetailRAL{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-inline: 1rem;
+  background-color: #ffffff;
 }
 
 .libraryDetailReview {
@@ -184,16 +193,3 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* 파이어폭스 */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.libraryDetailInputCal::-webkit-datetime-edit {
-  opacity: 0;
-}
-
-.libraryDetailInputCal::-webkit-calendar-picker-indicator {
-  opacity: 1;
-  cursor: pointer;
-}

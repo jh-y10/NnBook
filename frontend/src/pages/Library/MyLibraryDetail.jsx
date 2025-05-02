@@ -94,7 +94,6 @@ const MyLibraryDetail = () => {
   return (
     <div className="libraryDetailContainer">
       <div>
-        <h3>읽고 있는 도서</h3>
         <div>
           <div className="libraryDetail libraryDetailBoxStroke">
             <div className="libraryDetailBookInfo">
@@ -113,21 +112,16 @@ const MyLibraryDetail = () => {
                     {book?.categoryName.split(">")[1]}
                   </h6>
                 </div>
-                <div>
-                  {review && (
-                    <div className="mt-3 mx-4 libraryDetailReview">
-                      <p>한줄 리뷰: </p> {review}
-                    </div>
-                  )}
-
-                  {likeStatus && (
-                    <div
-                      className="mt-2 mx-4 libraryDetailLike"
-                    >
+                {review && likeStatus && (
+                  <div className="libraryDetailBoxStroke libraryDetailRAL">
+                    <div className="libraryDetailLike">
                       {likeStatus === "like" ? "👍 Like" : "👎 Dislike"}
                     </div>
-                  )}
-                </div>
+                    <div className="libraryDetailReview">
+                      <p>한줄 리뷰: </p> {review}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
