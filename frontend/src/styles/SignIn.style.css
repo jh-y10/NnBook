@@ -52,8 +52,38 @@
   border-color: #d8f69e;
 }
 
-.logo-img img {
+.signin-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.signin-logo-img {
   max-width: 160px;
   height: auto;
-  display: block;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.input-underline {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e3dcd2;
+  border-radius: 0;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input-underline:focus {
+  border-bottom: 1px solid #d8f69e;
+  outline: none;
+  box-shadow: 0 1px 0 0 #d8f69e;
+}
+
+.input-underline::placeholder {
+  color: #aaa;
+  font-style: italic;
 }

@@ -1,10 +1,9 @@
 import React from "react";
-import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
-import BookCard from "../../common/BookCard/BookCard";
+import { Alert, Spinner } from "react-bootstrap";
 import useBooks from "../../hooks/useBooks";
-import "../../styles/Recommend.style.css"; // 스타일 따로 분리
+import "../../styles/Recommend.style.css";
 
-const Recommend = () => {
+const Recommend = ({ previewCount }) => {
   const { data: books, isLoading, error } = useBooks();
 
   if (isLoading)
@@ -16,19 +15,23 @@ const Recommend = () => {
 
   if (error) return <Alert variant="danger">{error.message}</Alert>;
 
-  const recommended = books?.slice(0, 5);
+  const recommended = previewCount ? books?.slice(0, previewCount) : books;
 
   return (
-    <Container className="recommend-container">
-      <h2 className="recommend-title">📚 추천 도서</h2>
-      <Row className="recommend-row">
+    <div className="recommend-section">
+      <h2>취향 기반 추천 도서</h2>
+      <div className="recommend-grid">
         {recommended?.map((book, idx) => (
-          <Col key={idx} xs={12} sm={6} md={4} lg={3}>
-            <BookCard book={book} />
-          </Col>
+          <div key={idx} className="recommend-card">
+            <img
+              src={book.cover?.replace("/api/image-proxy?url=", "")}
+              alt={book.title}
+            />
+            <div className="recommend-card-title">{book.title}</div>
+          </div>
         ))}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 
