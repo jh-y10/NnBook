@@ -15,7 +15,7 @@ const RentalList = () => {
   const navigate = useNavigate()
 
   //대여도서목록
-  const { data: books = [], isLoading, error } = useBooks(page)
+  const { data: books = [], isLoading, error } = useBooks('',page)
   console.log("렌탈데이터",books)
   //대여도서검색
   const { data: searchBook = [] } = useSearchBook(searchTerm, page);
