@@ -48,7 +48,7 @@ router.post("/check-email", checkEmail);
 
 /**
  * @swagger
- * /auth/signup:
+ * /api/auth/register:
  *   post:
  *     summary: 회원가입
  *     description: 이름, 이메일, 비밀번호를 입력해 회원가입합니다.
