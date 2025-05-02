@@ -82,6 +82,7 @@ body {
   height: 70vh;
   padding: 20px;
   border: 1px solid #e3dcd2;
+  margin-bottom: 200px;
   font-family: "MaruBuriSemiBold", serif;
   color: #4b4b4b;
 }
@@ -133,6 +134,7 @@ body {
 }
 
 .button-box button {
+  width: 71px !important;
   border: none;
   background-color: #f6a89e;
 }
