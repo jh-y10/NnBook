@@ -2,12 +2,8 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import LogoImg from "../assets/NnBook-Logo.png";
-<<<<<<< HEAD
-import "./AppLayout.style.css";
-import Footer from'./Footer'
-=======
 import "../styles/AppLayout.style.css";
->>>>>>> 8baa75f3375ee1417652b8be165cd054596ad29d
+import Footer from'./Footer'
 
 const AppLayout = () => {
   return (

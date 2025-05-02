@@ -20,6 +20,3 @@ export default function BookCard({ book, onClick }) {
     </Col>
   )
 }
-
-
-export default BookCard
