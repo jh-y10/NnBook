@@ -6,21 +6,13 @@ export const findUserByEmail = async (email) => {
   ]);
   return rows[0];
 };
-
-export const createUser = async (
-  email,
-  name,
-  hashedPassword,
-  location,
-  favGenre
-) => {
+export const createUser = async (email, name, hashedPassword, location) => {
   const [result] = await db.query(
     "INSERT INTO userinfo (email, name, password, location) VALUES (?, ?, ?, ?)",
-    [email, name, hashedPassword, location, favGenre]
+    [email, name, hashedPassword, location]
   );
   return result;
 };
-
 export const findAllUsers = async () => {
   const [rows] = await db.query("SELECT email, name, location FROM userinfo");
   return rows;
