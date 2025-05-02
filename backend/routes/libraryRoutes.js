@@ -11,7 +11,7 @@ const router = express.Router();
 
 // 읽고있는 도서 조회
 // 다 읽은 책 조회
-// 내가 대여해준 도서 조회 - isLendable true(대여등록한 애들)이란 전제 하에
+// 내가 대여해준 도서 조회 - isLendable true(대여등록한 책들)이란 전제 하에
 // 책 내서재에 추가하기(읽는중상태로 감) - 상세페이지에서 내가 추가할경우 ownerEmail == holderEmail, 내가 빌린 책일경우 owner != holder
 //책 다읽음 상태로 변경
 router.get("/reading", getReading);
