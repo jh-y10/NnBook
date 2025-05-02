@@ -12,12 +12,12 @@ router.get("/favgenre", getFavGenre);
 router.delete("/favgenre", deleteFavGenre);
 
 router.get("/likes", (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   res.json({ message: "좋아요 조회 성공", email });
 });
 
 router.get("/favgenre", (req, res) => {
-  const { email } = req.body;
+  const { email } = req.query;
   res.json({ message: "관심장르 조회 성공", email });
 });
 
