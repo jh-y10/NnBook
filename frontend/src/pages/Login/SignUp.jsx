@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoImg from "../../assets/NnBook-Logo.png";
 import "../../styles/SignUp.style.css";
+import authApi from "../../utils/authApi";
 
 const genreOptions = [
   { id: "170", name: "건강/취미" },
@@ -50,6 +50,9 @@ function SignUp() {
   });
   const [showGenres, setShowGenres] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
+  const [emailMessage, setEmailMessage] = useState("");
+  const [emailAvailable, setEmailAvailable] = useState(null);
+
   const [genres, setGenres] = useState([]);
 
   const handleChange = (e) => {
@@ -94,24 +97,21 @@ function SignUp() {
 
   const checkEmail = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5050/api/auth/check-email",
-        {
-          email: form.email,
-        }
-      );
+      const res = await authApi.post("/auth/check-email", {
+        email: form.email,
+      });
       if (res.data.available) {
-        alert("사용 가능한 이메일입니다.");
-        setEmailChecked(true);
+        setEmailMessage("✅ 사용 가능한 이메일입니다.");
+        setEmailAvailable(true);
       } else {
-        alert("이미 사용 중인 이메일입니다.");
-        setEmailChecked(false);
+        setEmailMessage("❌ 이미 사용 중인 이메일입니다.");
+        setEmailAvailable(false);
       }
     } catch (err) {
-      alert("중복 확인 중 오류 발생");
+      setEmailMessage("⚠️ 중복 확인 중 오류 발생");
+      setEmailAvailable(false);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -121,8 +121,9 @@ function SignUp() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5050/api/auth/signup", {
+      await authApi.post("/auth/register", {
         email: form.email,
+        name: form.name,
         password: form.password,
         nickname: form.nickname,
         genres: genres,
@@ -131,19 +132,20 @@ function SignUp() {
       alert("회원가입 성공");
       navigate("/login");
     } catch (err) {
-      alert("회원가입 실패: " + err.response?.data?.message || err.message);
+      alert("회원가입 실패: " + (err.response?.data?.message || err.message));
     }
   };
 
   return (
     <div className="signup-container">
-      <img
-        src={LogoImg}
-        alt="NnBook Logo"
-        className="logo-img"
-        onClick={() => navigate("/")}
-        style={{ cursor: "pointer" }}
-      />
+      <div className="signup-logo-wrapper" onClick={() => navigate("/")}>
+        <img
+          src={LogoImg}
+          alt="NnBook Logo"
+          className="signup-logo-img"
+          style={{ cursor: "pointer" }}
+        />
+      </div>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -180,6 +182,15 @@ function SignUp() {
             중복 확인
           </button>
         </div>
+        {emailMessage && (
+          <p
+            className={`email-check-message ${
+              emailAvailable ? "text-success" : "text-danger"
+            }`}
+          >
+            {emailMessage}
+          </p>
+        )}
 
         <input
           className="input-underline"

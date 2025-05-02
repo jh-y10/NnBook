@@ -18,15 +18,13 @@ const BookCarousel = () => {
   if (error) return <p>{error.message}</p>;
   if (!books || books.length === 0) return null;
 
-  // 도서 8개씩 묶기
   const groupedBooks = chunkArray(books, 4);
-
-  // 상단 하단 따로 분리
   const topChunks = groupedBooks.filter((_, i) => i % 2 === 0);
   const bottomChunks = groupedBooks.filter((_, i) => i % 2 === 1);
 
   return (
     <div className="book-carousel-wrapper mt-5">
+      {/* 위쪽 캐러셀 */}
       <Carousel interval={null} indicators={false} controls>
         {topChunks.map((group, idx) => (
           <Carousel.Item key={`top-${idx}`}>
@@ -35,13 +33,13 @@ const BookCarousel = () => {
                 <div className="book-card" key={book.link || i}>
                   <a href={book.link} target="_blank" rel="noopener noreferrer">
                     <img
-                      src={`/api/image-proxy?url=${encodeURIComponent(
-                        book.cover.replace("/cover500/", "/coversum/")
-                      )}`}
+                      src={book.cover.replace("/cover500/", "/coversum/")}
                       alt={book.title}
                     />
-                    <p className="book-title">{book.title}</p>
-                    <small className="book-author">{book.author}</small>
+                    <div className="book-info">
+                      <p className="book-title">{book.title}</p>
+                      <small className="book-author">{book.author}</small>
+                    </div>
                   </a>
                 </div>
               ))}
@@ -59,13 +57,13 @@ const BookCarousel = () => {
                 <div className="book-card" key={book.link || i}>
                   <a href={book.link} target="_blank" rel="noopener noreferrer">
                     <img
-                      src={`/api/image-proxy?url=${encodeURIComponent(
-                        book.cover.replace("/cover500/", "/coversum/")
-                      )}`}
+                      src={book.cover.replace("/cover500/", "/coversum/")}
                       alt={book.title}
                     />
-                    <p className="book-title">{book.title}</p>
-                    <small className="book-author">{book.author}</small>
+                    <div className="book-info">
+                      <p className="book-title">{book.title}</p>
+                      <small className="book-author">{book.author}</small>
+                    </div>
                   </a>
                 </div>
               ))}
