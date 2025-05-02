@@ -4,6 +4,8 @@ import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 import myPageRoutes from "./routes/myPageRoutes.js";
 import libraryRoutes from "./routes/libraryRoutes.js";
+import meetingRoutes from "./routes/meetingRoutes.js";
+import borrowRoutes from "./routes/borrowRoutes.js";
 import { specs, swaggerUi } from "./swagger.js";
 
 dotenv.config();
@@ -18,5 +20,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/auth", authRoutes);
 app.use("/my", myPageRoutes);
 app.use("/library", libraryRoutes);
+app.use("/meeting", meetingRoutes);
+app.use("/borrow", borrowRoutes);
 
 export default app;

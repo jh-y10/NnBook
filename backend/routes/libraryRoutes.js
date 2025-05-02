@@ -21,7 +21,7 @@ router.patch("/finished", changeToFinished);
 router.get("/lended", getLendedBooks);
 
 router.get("/reading", (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   res.json({ message: "조회 성공" });
 });
 
@@ -31,7 +31,7 @@ router.post("/reading", (req, res) => {
 });
 
 router.get("/finished", (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   res.json({ message: "조회 성공", email });
 });
 
@@ -41,7 +41,7 @@ router.patch("/finished", (req, res) => {
 });
 
 router.get("/lended", (req, res) => {
-  const { ownerEmail } = req.body;
+  const { ownerEmail } = req.query;
   res.json({ message: "조회 성공" });
 });
 

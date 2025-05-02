@@ -6,7 +6,7 @@ import {
 
 //좋아요 한 책 조회
 export const getLikes = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.body;
+  const { ownerEmail, holderEmail } = req.query;
   try {
     const likes = await findLikedBooks(ownerEmail, holderEmail);
     res.status(200).json(likes);
@@ -18,7 +18,7 @@ export const getLikes = async (req, res) => {
 
 //관심장르 조회
 export const getFavGenre = async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.query;
   try {
     const genres = await findFavGenre(email);
     res.status(200).json(genres);
