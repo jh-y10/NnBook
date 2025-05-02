@@ -15,14 +15,14 @@ const fetchBookList = (query, page = 1, size = 20) => {
 };
 
 export default function useBooks(query, page = 1, size = 20) {
-    return useQuery({
-        queryKey:["bookList", query, page, size],
-        queryFn:() => fetchBookList(query, page, size),
-        select:(result) => {
-            //console.log("result.data", result.data.item);
-            return result.data.item;
-          },
-        keepPreviousData: true,
-        //staleTime:        1000 * 60 * 5,
-      });
-    }
+  return useQuery({
+    queryKey: ["bookList", query, page, size],
+    queryFn: () => fetchBookList(query, page, size),
+    select: (result) => {
+      //console.log("result.data", result.data.item);
+      return result.data.item;
+    },
+    keepPreviousData: true,
+    //staleTime:        1000 * 60 * 5,
+  });
+}
