@@ -1,9 +1,7 @@
 import React from "react";
 
 const BookItem = ({ book }) => {
-  const imageUrl = `/api/image-proxy?url=${encodeURIComponent(
-    book.cover.replace("/cover500/", "/coversum/")
-  )}`;
+  const imageUrl = book.cover.replace("/cover500/", "/coversum/");
 
   return (
     <div className="book-card">

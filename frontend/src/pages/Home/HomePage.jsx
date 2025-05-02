@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookCarousel from "../../components/BookCarousel/BookCarousel";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import useBooks from "../../hooks/useBooks";
+import "../../styles/HomePage.style.css";
+import MeetingList from "../Meeting/MeetingList";
+import RentalList from "../Rental/RentalList";
+import Recommend from "./Recommend";
 
 const Section = ({ title, children }) => (
   <div className="section mt-5">
@@ -31,6 +36,8 @@ const HomePage = () => {
   console.log("검색 요청 상태:", { query, categoryId });
   console.log("불러온 책:", books);
 
+  const navigate = useNavigate();
+
   return (
     <div className="container mt-4">
       <SearchBar
@@ -50,13 +57,21 @@ const HomePage = () => {
       )}
 
       <div className="text-end mt-3">
-        <button className="btn btn-outline-secondary">더보기</button>
+        <button className="btn-custom" onClick={() => navigate("/books")}>
+          더보기
+        </button>
       </div>
-      <Section title="모임 게시판"></Section>
 
-      <Section title="취향 기반 추천"></Section>
+      <MeetingList />
 
-      <Section title="대여 가능한 책"></Section>
+      <Recommend previewCount={4} />
+      <div className="text-end mt-3">
+        <button className="btn-custom" onClick={() => navigate("/recommend")}>
+          더보기
+        </button>
+      </div>
+
+      <RentalList />
     </div>
   );
 };
