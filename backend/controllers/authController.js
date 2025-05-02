@@ -1,29 +1,55 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {
-  createUser,
-  findUserByEmail,
-  findAllUsers,
   createFavGenre,
+  createUser,
+  findAllUsers,
+  findUserByEmail,
 } from "../models/userModel.js";
 
+// 이메일 중복 확인
+export const checkEmail = async (req, res) => {
+  const { email } = req.body;
+  console.log("중복 확인 요청 이메일:", email);
+  try {
+    const user = await findUserByEmail(email);
+    if (user) {
+      return res.json({ available: false });
+    }
+    return res.json({ available: true });
+  } catch (error) {
+    console.error("이메일 중복 확인 오류:", error);
+    res.status(500).json({ message: "서버 에러" });
+  }
+};
 //회원가입
 export const register = async (req, res) => {
-  const { email, name, password, location, genre } = req.body;
+  const { email, name, password, location, genres } = req.body;
+  console.log("회원가입 요청", { email, name, location, genres });
+
   try {
     const existingUser = await findUserByEmail(email);
+    console.log("이메일 중복검사 결과", !!existingUser);
+
     if (existingUser) {
       return res.status(400).json({ message: "이미 가입된 이메일입니다." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("🔐 비밀번호 해시 완료");
     await createUser(email, name, hashedPassword, location);
+
     //관심장르 설정
-    await Promise.all(genre.map((g) => createFavGenre(email, g)));
+    await Promise.all(
+      genres.map((g) => {
+        console.log("🎯 관심 장르 등록:", g);
+        createFavGenre(email, g);
+      })
+    );
 
     res.status(201).json({ message: "회원가입 성공!" });
   } catch (error) {
-    console.error(error);
+    console.error("회원가입 중 오류", error);
     res.status(500).json({ message: "서버 에러" });
   }
 };
