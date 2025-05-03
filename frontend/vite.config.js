@@ -9,10 +9,18 @@ export default defineConfig({
         target: "http://localhost:5050",
         changeOrigin: true,
       },
+      // 추가 백엔드 api
       "/api": {
-        target: "https://www.aladin.co.kr",
+        //target: "https://www.aladin.co.kr",
+        target:  "http://localhost:5050",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/ttb/api"),
+        // rewrite: (path) => path.replace(/^\/api/, "/ttb/api"),
+      },
+      //추가 알라딘 api 요거 살려야함
+      "/ttb/api": {
+        target: "https://www.aladin.co.kr/ttb/api",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ttb\/api/, ""),
       },
     },
   },

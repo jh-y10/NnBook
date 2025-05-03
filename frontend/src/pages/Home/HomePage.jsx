@@ -5,7 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import useBooks from "../../hooks/useBooks";
 import "../../styles/HomePage.style.css";
 import MeetingList from "../Meeting/MeetingList";
-import RentalList from "../Rental/RentalList";
+import Rental from'./Rental'
 import Recommend from "./Recommend";
 
 const Section = ({ title, children }) => (
@@ -70,8 +70,7 @@ const HomePage = () => {
           더보기
         </button>
       </div>
-
-      <RentalList />
+        <Rental />
     </div>
   );
 };
