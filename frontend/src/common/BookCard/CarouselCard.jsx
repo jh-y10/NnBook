@@ -15,7 +15,7 @@ export default function BookCard({ bookID, libraryBookStatus, email }) {
   const { mutate: registerBookLend } = useRegisterBookLendMutation();
 
   const moveToDetail = (bookID) => {
-    navigate(`/books/${bookID}`);
+    navigate(`/library/${bookID}`);
   };
 
   const location = mydata?.location;
