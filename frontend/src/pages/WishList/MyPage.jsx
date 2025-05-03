@@ -91,7 +91,7 @@ const MyPage = () => {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row className="rental-book">
           <Col lg={12}>
             <h1 className='mypage-title'>대여중인 책</h1>
             <div>
