@@ -1,23 +1,17 @@
 import { db } from "../config/db.js";
 
-export const FetchNewBookLend = async (
-  bookId,
-  email,
-  location,
-  startDate,
-  endDate
-) => {
+export const FetchNewBookLend = async (bookID, email, location) => {
   const [result] = await db.query(
-    "INSERT INTO registerbooklend (bookId, ownerEmail, location, startDate, endDate) VALUES (?, ?, ?, ?, ?)",
-    [bookId, email, location, startDate, endDate]
+    "INSERT INTO registerbooklend (bookId, ownerEmail, location) VALUES (?, ?, ?)",
+    [bookID, email, location]
   );
   return result;
 };
 
-export const changeLendStatus = async (bookId) => {
+export const changeLendStatus = async (bookID) => {
   const [result] = await db.query(
     "UPDATE userlibrary SET isLendable = true WHERE bookId = ?",
-    [bookId]
+    [bookID]
   );
   return result;
 };

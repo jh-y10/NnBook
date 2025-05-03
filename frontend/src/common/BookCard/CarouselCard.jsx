@@ -5,21 +5,22 @@ import useBookByID from "../../hooks/useBookbyID";
 import { useNavigate } from "react-router";
 import { useAddToLibraryMutation } from "../../hooks/useAddToLibraryMutation"; // 추가된 훅
 import { useRegisterBookLendMutation } from "../../hooks/useRegisterBookLendMutation"; // 추가된 훅
+import { useMyInfoQuery } from "../../hooks/useMyInfoQuery";
 
 export default function BookCard({ bookID, libraryBookStatus, email }) {
   const { data: bookinfo, isLoading, isError, error } = useBookByID(bookID);
   const navigate = useNavigate();
 
-  const { mutate: addToLibrary } = useAddToLibraryMutation();
+  const {data: mydata} = useMyInfoQuery();
   const { mutate: registerBookLend } = useRegisterBookLendMutation();
 
   const moveToDetail = (bookID) => {
-    navigate(`/library/${bookID}`);
+    navigate(`/books/${bookID}`);
   };
 
+  const location = mydata?.location;
   const handleRegisterLend = () => {
-    registerBookLend({ bookID, ownerEmail: email, holderEmail: email });
-    addToLibrary({ bookID, email });
+    registerBookLend({ bookID, location });
   };
 
   if (isLoading) return <div>Loading...</div>;

@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import authApi from "../utils/authApi";
 
-const registerBookLend = async ({ bookID, ownerEmail, holderEmail }) => {
-  const res = await authApi.patch(`/library/lend`, {
+const registerBookLend = async ({ bookID, email, location }) => {
+  const res = await authApi.post(`/borrow/booklend`, {
     bookID,
-    ownerEmail,
-    holderEmail,
+    email,
+    location,
   });
   return res.data;
 };

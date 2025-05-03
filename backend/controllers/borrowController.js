@@ -12,13 +12,13 @@ import { db } from "../config/db.js";
 
 //대여도서 등록
 export const addBookLend = async (req, res) => {
-  const { bookId, location, startDate, endDate } = req.body;
+  const { bookID, location } = req.body;
   try {
     const { email } = req.user; //토큰에서 가져오기
-    await FetchNewBookLend(bookId, email, location, startDate, endDate);
+    await FetchNewBookLend(bookID, email, location);
 
     //대여등록 상태 true로 바꾸기
-    await changeLendStatus(bookId);
+    await changeLendStatus(bookID);
     return res.status(201).json({ message: "대여도서 추가 완료!" });
   } catch (error) {
     console.error("addBookLend 오류:", error);
