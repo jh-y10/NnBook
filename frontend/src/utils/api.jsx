@@ -4,8 +4,9 @@ const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
 //console.log("Aladin API Key:", API_KEY);
 //console.log("Aladin Base URL:", BASE_URL);
+
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: "/ttb/api",
   timeout: 5000,
   params: {
     ttbkey: API_KEY,
@@ -13,6 +14,7 @@ const api = axios.create({
     Version: "20131101",
   },
 });
+
 
 // 요청 인터셉터
 api.interceptors.request.use(

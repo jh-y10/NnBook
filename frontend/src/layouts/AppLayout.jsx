@@ -51,6 +51,9 @@ const AppLayout = () => {
                   <Nav.Link as={Link} to="/library">
                     내 서재
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/rental">
+                    대여
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/mypage">
                     마이페이지
                   </Nav.Link>
