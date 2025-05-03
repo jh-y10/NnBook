@@ -5,6 +5,8 @@ import {
   createUser,
   findAllUsers,
   findUserByEmail,
+  fetchMyInfo,
+  changeLocationInfo,
 } from "../models/userModel.js";
 
 // 이메일 중복 확인
@@ -24,8 +26,8 @@ export const checkEmail = async (req, res) => {
 };
 //회원가입
 export const register = async (req, res) => {
-  const { email, name, password, location, genres } = req.body;
-  console.log("회원가입 요청", { email, name, location, genres });
+  const { email, name, nickname, password, location, genres } = req.body;
+  console.log("회원가입 요청", { email, name, nickname, location, genres });
 
   try {
     const existingUser = await findUserByEmail(email);
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log("🔐 비밀번호 해시 완료");
-    await createUser(email, name, hashedPassword, location);
+    await createUser(email, name, nickname, hashedPassword, location);
 
     //관심장르 설정
     await Promise.all(
@@ -93,5 +95,34 @@ export const getAllUsers = async (req, res) => {
   } catch (error) {
     console.error("사용자 조회 실패:", error);
     res.status(500).json({ message: "사용자 조회 중 오류 발생" });
+  }
+};
+
+//내 정보 조회
+export const getMyInfo = async (req, res) => {
+  try {
+    const { email } = req.user; // verifyToken에서 저장된 정보
+    const user = await fetchMyInfo(email);
+    if (!user) {
+      return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("사용자 조회 실패:", error);
+    res.status(500).json({ message: "사용자 조회 중 오류 발생" });
+  }
+};
+
+//위치 변경
+export const changeLocation = async (req, res) => {
+  const { email } = req.user; // 토큰에서 이메일
+  const { location } = req.body; // 요청 본문에서 새 위치
+
+  try {
+    await changeLocationInfo(email, location);
+    res.status(200).json({ message: "변경 완료", location });
+  } catch (error) {
+    console.error("위치 변경 에러:", error);
+    res.status(500).json({ message: "서버 에러" });
   }
 };
