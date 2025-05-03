@@ -1,22 +1,31 @@
 import { db } from "../config/db.js";
 
 export const FetchNewBookLend = async (
-  libraryID,
+  email,
+  bookId,
   location,
   startDate,
   endDate
 ) => {
   const [result] = await db.query(
-    "INSERT INTO registerbooklend (libraryID, location, startDate, endDate) VALUES (?, ?, ?, ?)",
-    [libraryID, location, startDate, endDate]
+    "INSERT INTO registerbooklend (ownerEmail, bookId, location, startDate, endDate) VALUES (?, ?, ?, ?, ?)",
+    [email, bookId, location, startDate, endDate]
   );
   return result;
 };
 
-export const changeLendStatus = async (libraryID) => {
+export const changeLendStatus = async (bookId) => {
   const [result] = await db.query(
-    "UPDATE userlibrary SET isLendable = true WHERE ID = ?",
-    [libraryID]
+    "UPDATE userlibrary SET isLendable = true WHERE bookId = ?",
+    [bookId]
+  );
+  return result;
+};
+
+export const changeLendStatusFalse = async (bookId) => {
+  const [result] = await db.query(
+    "UPDATE userlibrary SET isLendable = false WHERE bookId = ?",
+    [bookId]
   );
   return result;
 };
@@ -26,23 +35,20 @@ export const fetchAllBookLend = async () => {
   return rows;
 };
 
-export const FetchBorrowReq = async (bookID, libraryID, requesterEmail) => {
+//도서대출
+export const FetchBorrowReq = async (email, bookId) => {
   const [result] = await db.query(
-    "INSERT INTO bookborrowrequest (bookID, libraryID, requesterEmail) VALUES (?, ?, ?)",
-    [bookID, libraryID, requesterEmail]
+    "UPDATE userlibrary SET isBorrowed = true, holderEmail = ? WHERE bookId = ? AND isLendable = true",
+    [email, bookId]
   );
   return result;
 };
 
-export const SendNotification = async (
-  receiverEmail,
-  senderEmail,
-  type,
-  message
-) => {
+//대출된 책은 대출가능 목록에서 삭제
+export const deleteBookLend = async (bookId) => {
   const [result] = await db.query(
-    "INSERT INTO notifications (receiverEmail, senderEmail, type, message) VALUES (?, ?, ?, ?)",
-    [receiverEmail, senderEmail, type, message]
+    "DELETE FROM registerbooklend WHERE bookId = ?",
+    [bookId]
   );
   return result;
 };
