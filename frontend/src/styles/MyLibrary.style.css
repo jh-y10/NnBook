@@ -1,5 +1,31 @@
+.libraryContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: #4b4b4b;
+  padding-inline: 2rem;
+}
+
 .libraryBoxStroke {
   border-radius: 8px;
   border: 1px solid #e3dcd2 !important;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.libraryNameTitle {
+  font-family: "MaruBuriBold";
+  margin-top: 3rem;
+}
+
+.libraryBookList {
+  padding: 1rem;
+}
+
+.libraryBookList p {
+  margin: 0;
+}
+
+.libraryTitle {
+  font-family: "MaruBuriSemiBold";
+  font-size: 25px;
 }

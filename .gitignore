@@ -26,5 +26,6 @@ dist-ssr
 # 환경 변수
 .env
 
-# db
+#db
 noona-book-db.sql
+
