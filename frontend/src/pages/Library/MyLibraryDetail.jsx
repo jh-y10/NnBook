@@ -229,7 +229,7 @@ const MyLibraryDetail = () => {
                 variant={likeStatus === "like" ? "success" : "outline-success"}
                 onClick={() => setLikeStatus("like")}
               >
-                👍 Like
+                <i class="fa-solid fa-thumbs-up"></i> Like
               </Button>
               <Button
                 variant={likeStatus === "dislike" ? "danger" : "outline-danger"}
