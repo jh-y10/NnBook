@@ -18,11 +18,13 @@ const MyLibrary = () => {
     isError: isReadingError,
   } = useReadingBookQuery({ ownerEmail, holderEmail });
 
+
   const {
     data: finishedBooks,
     isLoading: isFinishedLoading,
     isError: isFinishedError,
   } = useFinishedBooksQuery({ ownerEmail, holderEmail });
+  
 
   const {
     data: lendedBooks,
