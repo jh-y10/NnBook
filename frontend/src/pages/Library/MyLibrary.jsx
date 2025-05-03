@@ -3,6 +3,8 @@ import "../../styles/MyLibrary.style.css";
 import { useMyInfoQuery } from "../../hooks/useMyInfoQuery";
 import { Alert } from "react-bootstrap";
 import { useReadingBooksQuery } from "../../hooks/useReadingBooks";
+import SingleLineCarousel from '../../common/react-multi-carousel/SingleLineCarousel';
+
 
 const MyLibrary = () => {
   const { data: mydata, isLoading, isError, error } = useMyInfoQuery();
