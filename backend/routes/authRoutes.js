@@ -4,7 +4,10 @@ import {
   getAllUsers,
   login,
   register,
+  getMyInfo,
+  changeLocation,
 } from "../controllers/authController.js";
+import { verifyToken } from "../middlewares/veryfyToken.js";
 
 const router = express.Router();
 
@@ -12,7 +15,16 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/getusers", getAllUsers);
 router.post("/check-email", checkEmail);
+//내 정보 조회
+router.get("/me", verifyToken, getMyInfo);
+//위치정보 변경
+router.patch("/location", verifyToken, changeLocation);
 
+router.patch("/location", (req, res) => {
+  const { email } = req.user;
+  const { location } = req.body;
+  res.status(201).json({ message: "위치정보 변경됨" });
+});
 /**
  * @swagger
  * /auth/login:

@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import useBooks from "../../hooks/useBooks";
 import "../../styles/BookCarousel.style.css";
+import { Link } from "react-router";
 
 const chunkArray = (array, size) => {
   const result = [];
@@ -31,7 +32,7 @@ const BookCarousel = () => {
             <div className="book-row">
               {group.map((book, i) => (
                 <div className="book-card" key={book.link || i}>
-                  <a href={book.link} target="_blank" rel="noopener noreferrer">
+                  <Link to={`/books/${book.itemId}`}>
                     <img
                       src={book.cover.replace("/cover500/", "/coversum/")}
                       alt={book.title}
@@ -40,7 +41,7 @@ const BookCarousel = () => {
                       <p className="book-title">{book.title}</p>
                       <small className="book-author">{book.author}</small>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -55,7 +56,7 @@ const BookCarousel = () => {
             <div className="book-row">
               {group.map((book, i) => (
                 <div className="book-card" key={book.link || i}>
-                  <a href={book.link} target="_blank" rel="noopener noreferrer">
+                  <Link to={`/books/${book.itemId}`}>
                     <img
                       src={book.cover.replace("/cover500/", "/coversum/")}
                       alt={book.title}
@@ -64,7 +65,7 @@ const BookCarousel = () => {
                       <p className="book-title">{book.title}</p>
                       <small className="book-author">{book.author}</small>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Button, Form, Modal } from "react-bootstrap";
 import "../../styles/MyLibraryDetail.style.css";
-import useBookByISBN from "../../hooks/useBookIsbn";
+import useBookByISBN from "../../hooks/useBookbyID";
 
 const MyLibraryDetail = () => {
   const [entries, setEntries] = useState([]);
