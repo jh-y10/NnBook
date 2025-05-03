@@ -8,14 +8,14 @@ import { useFinishedBooksQuery } from "../../hooks/useFinishedBooksQuery";
 const MyLibrary = () => {
   const { data: mydata, isLoading, isError, error } = useMyInfoQuery();
 
+  const ownerEmail = mydata.email;
+  const holderEmail = mydata.email;
+
   const {
     data: readingBooks,
     isLoading: isReadingLoading,
     isError: isReadingError,
-  } = useReadingBookQuery(mydata?.email);
-
-  const ownerEmail = mydata.email;
-  const holderEmail = mydata.email;
+  } = useReadingBookQuery({ ownerEmail, holderEmail });
 
   const {
     data: finishedBooks,
@@ -37,10 +37,8 @@ const MyLibrary = () => {
           {isReadingLoading ? (
             <p>로딩 중...</p>
           ) : isReadingError ? (
-            <Alert variant="danger">읽고 있는 도서 불러오기 실패</Alert>
-          ) : readingBooks.length === 0 ? (
-            <p>읽고 있는 도서가 없습니다.</p>
-          ) : (
+            <p>데이터를 불러오는 데 실패했습니다.</p>
+          ) : readingBooks && readingBooks.length > 0 ? (
             readingBooks.map((book) => (
               <div key={book.id} className="bookItem">
                 <img
@@ -50,6 +48,8 @@ const MyLibrary = () => {
                 />
               </div>
             ))
+          ) : (
+            <p>읽고 있는 도서가 없습니다.</p>
           )}
         </div>
       </div>
