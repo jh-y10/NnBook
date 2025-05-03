@@ -5,12 +5,9 @@ export const useLikeBookMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ bookID, email }) =>
+    mutationFn: ({ bookID }) =>
       authApi.patch("/library/liked", {
         bookID,
-        ownerEmail: email,
-        holderEmail: email,
-        liked: true,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries(["myLibrary"]);

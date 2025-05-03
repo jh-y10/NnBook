@@ -24,7 +24,7 @@ router.get("/finished", verifyToken, getFinished);
 router.patch("/finished", changeToFinished);
 router.get("/lended", verifyToken, getLendedBooks);
 router.get("/liked", verifyToken, getLikedBooks);
-router.patch("/liked", changeToLiked);
+router.patch("/liked", verifyToken, changeToLiked);
 
 // router.get("/reading", (req, res) => {
 //   const { ownerEmail, holderEmail } = req.query;
