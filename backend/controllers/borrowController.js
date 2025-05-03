@@ -1,22 +1,24 @@
 import {
   FetchNewBookLend,
-  changeLendStatus,
   fetchAllBookLend,
   FetchBorrowReq,
-  SendNotification,
   findBorrowingBook,
+  changeLendStatus,
+  changeLendStatusFalse,
+  deleteBookLend,
 } from "../models/borrowModel.js";
 
 import { db } from "../config/db.js";
 
 //대여도서 등록
 export const addBookLend = async (req, res) => {
-  const { libraryID, location, startDate, endDate } = req.body;
+  const { bookId, location, startDate, endDate } = req.body;
   try {
-    await FetchNewBookLend(libraryID, location, startDate, endDate);
+    const { email } = req.user; //토큰에서 가져오기
+    await FetchNewBookLend(email, bookId, location, startDate, endDate);
 
-    await changeLendStatus(libraryID);
-
+    //대여등록 상태 true로 바꾸기
+    await changeLendStatus(bookId);
     return res.status(201).json({ message: "대여도서 추가 완료!" });
   } catch (error) {
     console.error("addBookLend 오류:", error);
@@ -37,91 +39,17 @@ export const getAllBookLend = async (req, res) => {
 
 //도서 대여 신청
 export const borrowBook = async (req, res) => {
-  const { bookID, libraryID, requesterEmail } = req.body;
+  const { bookId } = req.body;
+  const { email } = req.user; //토큰에서 가져오기
   try {
-    await FetchBorrowReq(bookID, libraryID, requesterEmail);
-
-    // ownerEmail 조회
-    const [owner] = await db.query(
-      "SELECT ownerEmail FROM userlibrary WHERE id = ?",
-      [libraryID]
-    );
-
-    //알람 보내기
-    if (owner.length > 0) {
-      const ownerEmail = owner[0].ownerEmail;
-      await SendNotification(
-        ownerEmail,
-        requesterEmail,
-        "borrow_request",
-        `도서 대여 요청이 도착했습니다.`
-      );
-    }
-
-    res.status(201).json({ message: "대여 신청 완료!" });
+    await FetchBorrowReq(email, bookId);
+    //대여가능 도서리스트에서 삭제, 대여등록 상태 바꾸기
+    await deleteBookLend(bookId);
+    await changeLendStatusFalse(bookId);
+    res.status(201).json({ message: "대여 완료!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "서버 에러" });
-  }
-};
-
-//대여신청알람 수락
-export const acceptBorrowRequest = async (req, res) => {
-  const { requestId, ownerEmail } = req.body; // ownerEmail은 프론트에서 같이 보내줘야 함
-  try {
-    await db.query(
-      "UPDATE bookborrowrequest SET status = 'accepted' WHERE id = ?",
-      [requestId]
-    );
-
-    // 요청자 이메일 알아내기
-    const [[{ requesterEmail }]] = await db.query(
-      "SELECT requesterEmail FROM bookborrowrequest WHERE id = ?",
-      [requestId]
-    );
-
-    // 알림 전송
-    await SendNotification(
-      requesterEmail,
-      ownerEmail,
-      "borrow_reply",
-      "대여 요청이 수락되었습니다."
-    );
-
-    res.status(200).json({ message: "대여 요청 수락됨" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "서버 오류" });
-  }
-};
-
-//거절
-export const rejectBorrowRequest = async (req, res) => {
-  const { requestId, ownerEmail } = req.body; // ownerEmail은 프론트에서 같이 보내줘야 함
-  try {
-    await db.query(
-      "UPDATE bookborrowrequest SET status = 'rejected' WHERE id = ?",
-      [requestId]
-    );
-
-    // 요청자 이메일 알아내기
-    const [[{ requesterEmail }]] = await db.query(
-      "SELECT requesterEmail FROM bookborrowrequest WHERE id = ?",
-      [requestId]
-    );
-
-    // 알림 전송
-    await SendNotification(
-      requesterEmail,
-      ownerEmail,
-      "borrow_reply",
-      "대여 요청이 거절되었습니다."
-    );
-
-    res.status(200).json({ message: "대여 요청 거절됨" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "서버 오류" });
   }
 };
 

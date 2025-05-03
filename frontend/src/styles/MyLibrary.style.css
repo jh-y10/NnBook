@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100vh;
   color: #4b4b4b;
-  padding-inline: 2rem;
 }
 
 .libraryBoxStroke {
@@ -14,7 +13,8 @@
 
 .libraryNameTitle {
   font-family: "MaruBuriBold";
-  margin-top: 3rem;
+  font-size: 26px;
+  margin-block: 30px;
 }
 
 .libraryBookList {
@@ -27,5 +27,5 @@
 
 .libraryTitle {
   font-family: "MaruBuriSemiBold";
-  font-size: 25px;
+  font-size: 20px;
 }

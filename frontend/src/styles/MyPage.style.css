@@ -55,10 +55,10 @@ h2{
 
 .my-location button:hover{
   background-color: #d8f69e;
-  color: black;
+  color: #4b4b4b;
 }
 
 .my-location button:active{
   background-color: #d8f69e !important;
-  color: black !important;
+  color: #4b4b4b !important;
 }
