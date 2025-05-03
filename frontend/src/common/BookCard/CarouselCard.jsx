@@ -7,7 +7,7 @@ import { useAddToLibraryMutation } from "../../hooks/useAddToLibraryMutation"; /
 import { useRegisterBookLendMutation } from "../../hooks/useRegisterBookLendMutation"; // 추가된 훅
 
 export default function BookCard({ bookID, libraryBookStatus, email }) {
-  const { data: bookinfo, isLoading, isError } = useBookByID(bookID);
+  const { data: bookinfo, isLoading, isError, error } = useBookByID(bookID);
   const navigate = useNavigate();
 
   const { mutate: addToLibrary } = useAddToLibraryMutation();
