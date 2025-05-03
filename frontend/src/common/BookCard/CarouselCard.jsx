@@ -40,12 +40,8 @@ export default function BookCard({ bookID, libraryBookStatus, email }) {
           e.target.src = "/fallback-image.png";
         }}
       />
-      <h6 className="mt-2 truncate" title={bookinfo.title}>
-        {bookinfo.title}
-      </h6>
-      <p className="text-muted truncate">{bookinfo.author}</p>
       {libraryBookStatus === "finished" && (
-        <button onClick={handleRegisterLend}>대여 등록</button>
+        <button className="lend-btn " onClick={handleRegisterLend}>대여 등록</button>
       )}
     </div>
   );
