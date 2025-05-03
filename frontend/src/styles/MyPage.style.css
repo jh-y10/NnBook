@@ -1,6 +1,6 @@
 .mypage-container{
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 200px;
 }
 
 .mypage-title{
@@ -10,6 +10,10 @@
   font-size: 26px;
   font-weight: 600;
   color: #4b4b4b;
+}
+
+.rental-book {
+  margin-bottom: 100px;
 }
 
 .go-library{
