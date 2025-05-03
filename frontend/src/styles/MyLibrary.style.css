@@ -1,7 +1,6 @@
 .libraryContainer {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   margin-bottom: 200px;
   color: #4b4b4b;
 }
