@@ -1,16 +1,15 @@
-// src/hooks/useFinishedBooksQuery.js
 import { useQuery } from "@tanstack/react-query";
 import authApi from "../utils/authApi";
 
-export const useFinishedBooksQuery = ({ ownerEmail, holderEmail }) => {
+const fetchFinishedBooks = async () => {
+  const res = await authApi.get("/library/finished");
+  return res.data;
+};
+
+export const useFinishedBooksQuery = () => {
   return useQuery({
-    queryKey: ["myLibrary", "finished", ownerEmail, holderEmail],
-    queryFn: async () => {
-      const { data } = await authApi.get(
-        `/library/finished?ownerEmail=${ownerEmail}&holderEmail=${holderEmail}`
-      );
-      return data;
-    },
-    enabled: !!ownerEmail && !!holderEmail,
+    queryKey: ["books-finished"],
+    queryFn: fetchFinishedBooks,
+    retry: false, // 토큰 오류 시 무한 재시도 방지
   });
 };

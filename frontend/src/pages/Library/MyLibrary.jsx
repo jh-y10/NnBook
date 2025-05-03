@@ -2,18 +2,19 @@ import React from "react";
 import "../../styles/MyLibrary.style.css";
 import { useMyInfoQuery } from "../../hooks/useMyInfoQuery";
 import { Alert } from "react-bootstrap";
+import SingleLineCarousel from "../../common/react-multi-carousel/SingleLineCarousel";
 import { useReadingBooksQuery } from "../../hooks/useReadingBooks";
-import SingleLineCarousel from '../../common/react-multi-carousel/SingleLineCarousel';
-
+import { useFinishedBooksQuery } from "../../hooks/useFinishedBooks";
 
 const MyLibrary = () => {
   const { data: mydata, isLoading, isError, error } = useMyInfoQuery();
 
   const { data: readingdata } = useReadingBooksQuery();
+  const { data: finisheddata } = useFinishedBooksQuery;
 
   console.log("data", mydata);
   console.log("rb", readingdata);
-  // console.log("fb", finishedBooks);
+  console.log("fb", finisheddata);
   // console.log("lb", lendedBooks);
 
   if (isLoading) return <div>Loading...</div>;
@@ -36,7 +37,13 @@ const MyLibrary = () => {
       </div>
       <div className="section mt-5">
         <h3 className="libraryTitle mb-3">완독 도서</h3>
-        <div className="libraryBoxStroke libraryBookList"></div>
+        <div className="libraryBoxStroke libraryBookList">
+          <div>
+            {finisheddata?.length > 0 && (
+              <SingleLineCarousel books={finisheddata} />
+            )}
+          </div>
+        </div>
       </div>
       <div className="section mt-5">
         <h3 className="libraryTitle mb-3">빌려준 도서</h3>
