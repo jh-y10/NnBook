@@ -1,20 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-//import api from "../utils/api";
-import backapi from "../utils/backapi";
+import authApi from "../utils/authApi";
 
-async function fetchLendables() {
-    const { data } = await backapi.get("/borrow/lendables");
-    return data;
-  }
-  
+const fetchLendableBooks = async () => {
+  const res = await authApi.get("/borrow/lendables");
+  return res.data;
+};
 
-
-  export default function useLendables() {
-    return useQuery({
-      queryKey: ["lendables"],
-      queryFn: fetchLendables,
-      retry: false,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    });
-  }
+export const useLendableBooksQuery = () => {
+  return useQuery({
+    queryKey: ["books-liked"],
+    queryFn: fetchLendableBooks,
+    retry: false, // 토큰 오류 시 무한 재시도 방지
+  });
+};

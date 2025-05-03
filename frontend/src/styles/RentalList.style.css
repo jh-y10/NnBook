@@ -1,3 +1,4 @@
+/* ====== 폰트 설정 ====== */
 @font-face {
   font-family: "MaruBuri";
   src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.eot);
@@ -63,6 +64,7 @@
       format("truetype");
 }
 
+/* ====== 공통 ====== */
 .rental-container {
   margin-bottom: 200px;
 }
@@ -73,6 +75,7 @@
   color: #4b4b4b;
 }
 
+/* 홈에서만 쓰는 검색 기능 포함 스타일 (rental.jsx용) */
 .rental-search {
   background-color: #e3dcd2 !important;
   border-color: #e3dcd2 !important;
@@ -85,11 +88,13 @@
   border-color: #d8c8bf !important;
   color: #222 !important;
 }
+
 .rental-search-input {
   width: 100%;
   max-width: 100%;
 }
 
+/* more 링크 */
 .more-link {
   font-size: 0.875rem;
   text-decoration: underline;
@@ -97,6 +102,7 @@
   cursor: pointer;
 }
 
+/* 반응형 */
 @media (max-width: 768px) {
   .rental-search-input {
     max-width: 20ch;

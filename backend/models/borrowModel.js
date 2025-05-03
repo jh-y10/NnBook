@@ -1,15 +1,15 @@
 import { db } from "../config/db.js";
 
 export const FetchNewBookLend = async (
-  email,
   bookId,
+  email,
   location,
   startDate,
   endDate
 ) => {
   const [result] = await db.query(
-    "INSERT INTO registerbooklend (ownerEmail, bookId, location, startDate, endDate) VALUES (?, ?, ?, ?, ?)",
-    [email, bookId, location, startDate, endDate]
+    "INSERT INTO registerbooklend (bookId, ownerEmail, location, startDate, endDate) VALUES (?, ?, ?, ?, ?)",
+    [bookId, email, location, startDate, endDate]
   );
   return result;
 };
