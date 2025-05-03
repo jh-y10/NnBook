@@ -22,9 +22,9 @@ export const getReading = async (req, res) => {
 
 //다읽은책
 export const getFinished = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.query;
+  const { email } = req.user; //토큰에서 가져오기
   try {
-    const finished = await findFinishedBooks(ownerEmail, holderEmail);
+    const finished = await findFinishedBooks(email);
     res.status(200).json(finished);
   } catch (error) {
     console.error("조회 실패:", error);
@@ -34,9 +34,9 @@ export const getFinished = async (req, res) => {
 
 //빌려준 책
 export const getLendedBooks = async (req, res) => {
-  const { ownerEmail, holderEmail } = req.query;
+  const { email } = req.user; //토큰에서 가져오기
   try {
-    const finished = await findLendedBooks(ownerEmail);
+    const finished = await findLendedBooks(email);
     res.status(200).json(finished);
   } catch (error) {
     console.error("조회 실패:", error);

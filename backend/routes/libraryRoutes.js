@@ -20,9 +20,9 @@ const router = express.Router();
 //책 좋아요하기
 router.get("/reading", verifyToken, getReading);
 router.post("/reading", addReading);
-router.get("/finished", getFinished);
+router.get("/finished", verifyToken, getFinished);
 router.patch("/finished", changeToFinished);
-router.get("/lended", getLendedBooks);
+router.get("/lended", verifyToken, getLendedBooks);
 router.get("/liked", verifyToken, getLikedBooks);
 router.patch("/liked", changeToLiked);
 

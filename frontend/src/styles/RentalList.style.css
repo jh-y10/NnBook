@@ -96,10 +96,15 @@
 
 /* more 링크 */
 .more-link {
-  font-size: 0.875rem;
+  font-size: 17px;
   text-decoration: underline;
   color: #333;
   cursor: pointer;
+}
+
+.rental-home-title{
+  display: flex;
+  gap: 3em;
 }
 
 /* 반응형 */
