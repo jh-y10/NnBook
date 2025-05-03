@@ -9,6 +9,7 @@ export default function BookCard({ book, onClick }) {
   const goToDetail = () => {
     navigate(`/books/${book.itemId}`);
   }
+
   return (
     <Col onClick={goToDetail}>
       <img
@@ -21,9 +22,11 @@ export default function BookCard({ book, onClick }) {
           e.target.src = "/fallback-image.png";
         }}
       />
+
       <h6 className="mt-2 truncate" title={book.title}>
         {book.title}
       </h6>
+      
       <p className="text-muted truncate">{book.author}</p>
     </Col>
   );
