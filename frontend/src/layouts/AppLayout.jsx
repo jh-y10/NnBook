@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import LogoImg from "../assets/NnBook-Logo.png";
-import "../styles/AppLayout.style.css";
 import Footer from "./Footer";
+import "../styles/AppLayout.style.css";
 
 const AppLayout = () => {
   const navigate = useNavigate();

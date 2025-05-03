@@ -13,19 +13,33 @@ export const addNewMeeting = async (
   location,
   date,
   time,
-  bookID,
-  title
+  title,
+  content
 ) => {
   const [result] = await db.query(
-    "INSERT INTO bookclub (leaderEmail, location, date, time, bookID, title) VALUES (?, ?, ?, ?, ?, ?)",
-    [leaderEmail, location, date, time, bookID, title]
+    "INSERT INTO bookclub (leaderEmail, location, date, time, title, content) VALUES (?, ?, ?, ?, ?, ?)",
+    [leaderEmail, location, date, time, title, content]
   );
   return result;
 };
 
-export const fetchAllMeetings = async () => {
-  const [rows] = await db.query("SELECT * FROM bookclub");
+export const deleteMeetingById = async (id) => {
+  const [result] = await db.query("DELETE FROM bookclub WHERE id = ?", [id]);
+  return result;
+};
+
+export const fetchAllMeetings = async (page, pageSize) => {
+  const offset = (page - 1) * pageSize;
+  const [rows] = await db.query(
+    "SELECT * FROM bookclub ORDER BY date DESC, time DESC LIMIT ? OFFSET ?",
+    [pageSize, offset]
+  );
   return rows;
+};
+
+export const fetchTotalMeetingCount = async () => {
+  const [rows] = await db.query("SELECT COUNT(*) AS total FROM bookclub");
+  return rows[0].total;
 };
 
 export const addNewMember = async (leaderEmail, memberEmail) => {
