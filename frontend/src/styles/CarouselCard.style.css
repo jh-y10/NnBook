@@ -1,0 +1,41 @@
+.truncate {
+  display: block;        
+  width: 18ch;            
+  white-space: nowrap;   
+  overflow: hidden;      
+  text-overflow: ellipsis;
+}
+
+.bookcard-contents{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookcard-contents img{
+  margin: 0;
+  width: 200px;
+  aspect-ratio: 2 / 3;
+} 
+
+@media screen and (max-width: 767px){
+  .bookcard-contents img{
+    width: 150px;
+    aspect-ratio: 2 / 3;
+  } 
+
+  .truncate {
+    width: 14ch;            
+  }
+}
+
+@media screen and (max-width: 540px){
+  .bookcard-contents img{
+    width: 130px;
+    aspect-ratio: 2 / 3;
+  } 
+}
+
+
+

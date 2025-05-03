@@ -3,8 +3,8 @@ import { db } from "../config/db.js";
 export const FetchNewBookLend = async (
   libraryID,
   location,
-  startTime,
-  endTime
+  startDate,
+  endDate
 ) => {
   const [result] = await db.query(
     "INSERT INTO registerbooklend (libraryID, location, startDate, endDate) VALUES (?, ?, ?, ?)",
@@ -45,4 +45,12 @@ export const SendNotification = async (
     [receiverEmail, senderEmail, type, message]
   );
   return result;
+};
+
+export const findBorrowingBook = async (email) => {
+  const [rows] = await db.query(
+    `SELECT id, bookID FROM noonalibrary.userlibrary WHERE holderEmail = ? && ownerEmail != ?`,
+    [email, email]
+  );
+  return rows;
 };

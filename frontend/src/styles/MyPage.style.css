@@ -12,6 +12,11 @@
   color: #4b4b4b;
 }
 
+.go-library{
+  display: flex;
+  justify-content: space-between;
+}
+
 .my-info{
   border: 1px solid #e3dcd2;
   border-radius: 20px;
@@ -21,6 +26,15 @@
 h2{
   font-size: 23px;
   font-weight: bold;
+}
+
+.my-lib{
+  border: none;
+  background: none;
+  text-decoration: underline;
+  font-weight: lighter;
+  font-size: 17px;
+  color: #4B4B4B;
 }
 
 .my-location{
