@@ -2,12 +2,21 @@ import React  from 'react'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import '../../styles/RentalDetail.style.css'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import BookRentalModal from './BookRentalModal'
+import "/src/styles/BookRentalModal.style.css";
 
 
 export default function RentalDetail() {
   const { state } = useLocation()
   const navigate = useNavigate()
   const book = state?.book
+
+  // 모달 오픈/닫기 state
+  const [showModal, setShowModal] = useState(false)
+  const openModal = () => setShowModal(true)
+  const closeModal = () => setShowModal(false)
+
 
   if (!book) {
     return (
@@ -21,6 +30,7 @@ export default function RentalDetail() {
   }
 
   return (
+    <>
     <Container className="py-4">
       <Row className="mb-4">
         <Col>
@@ -53,10 +63,27 @@ export default function RentalDetail() {
               >
                 대여 신청
               </Button>
+              <Button
+                size="lg"
+                className="rental-detail mt-3"
+                onClick={openModal}
+              >
+                도서 대여 등록
+              </Button>
             </Col>
           </Row>
         </Card.Body>
       </Card>
     </Container>
+    <BookRentalModal
+      show={showModal}
+      book={book}
+      onClose={closeModal}
+      onSubmit={bk => {
+        alert(`${bk.title} 대여 신청 완료!`)
+        closeModal()
+      }}
+    />
+    </>
   )
 }

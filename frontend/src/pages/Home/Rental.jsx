@@ -3,15 +3,20 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import BookCard from "../../common/BookCard/BookCard";
 import useBooks from "../../hooks/useBooks";
+//import useLendables from "../../hooks/uselendable";
 import "../../styles/RentalList.style.css";
+
 
 export default function RentalList() {
   const navigate = useNavigate();
 
+  //const { data: lendables = [], isLoading, error } = useLendables();
+  //console.log("렏드",lendables)
+  
   // 빈 query("") 이면 베스트셀러 모드, page=1, size=20(default)
   const { data: books = [], isLoading, error } = useBooks("", 1, 5);
 
-  if (isLoading) return <p>로딩 중…</p>;
+  if (isLoading ) return <p>로딩 중…</p>;
   if (error)     return <p>에러 발생: {error.message}</p>;
 
   return (
@@ -26,13 +31,12 @@ export default function RentalList() {
        </h4>
        
       <Row xs={1} sm={3} md={5} className="gx-1 gy-1 justify-content-center justify-content-sm-start">
-        {books.map(book => (
-          <Col key={book.itemId || book.id}>
+      {books.map((book) => (
+          <Col key={book}>
             <BookCard
+            key={book.itemId || book.id}   
               book={book}
-              onClick={() =>
-                navigate(`/rental/${book.itemId || book.id}`, { state: { book } })
-              }
+              onClick={() => navigate(`/rental/${book.itemId || book.id}`,{ state: { book } })}
             />
           </Col>
         ))}

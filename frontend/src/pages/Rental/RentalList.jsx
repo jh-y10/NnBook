@@ -18,7 +18,7 @@ const RentalList = () => {
   const { data: books = [], isLoading, error } = useBooks('',page)
   console.log("렌탈데이터",books)
   //대여도서검색
-  const { data: searchBook = [] } = useSearchBook(searchTerm, page);
+  const { data: searchBook = [], isLoading:searchloading } = useSearchBook(searchTerm, page);
   //.log("서치",searchBook)
   
 
@@ -30,7 +30,7 @@ const RentalList = () => {
   const isSearching = !!searchTerm;
   const displayBooks = isSearching ? searchBook : books;
 
-  if (isLoading) return <p>로딩 중…</p>
+  if (isLoading || searchloading) return <p>로딩 중…</p>
   if (error)     return <p>에러 발생: {error.message}</p>
 
   return(
