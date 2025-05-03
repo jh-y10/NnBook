@@ -9,8 +9,8 @@ import { useLendedBooksQuery } from "../../hooks/useLendedBooksQuery";
 const MyLibrary = () => {
   const { data: mydata, isLoading, isError, error } = useMyInfoQuery();
 
-  const ownerEmail = mydata.email;
-  const holderEmail = mydata.email;
+  const ownerEmail = mydata?.email;
+  const holderEmail = mydata?.email;
 
   const {
     data: readingBooks,
