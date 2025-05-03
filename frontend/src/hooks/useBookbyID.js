@@ -1,24 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
 
-const fetchBookByISBN = (isbn) => {
+const fetchBookByID = (bookID) => {
   return api.get("/ItemLookUp.aspx", {
     params: {
-      ItemIdType: "ISBN13",
-      ItemId: isbn,
-      Cover: "MidBig",
+      ItemIdType: "ItemID",
+      ItemId: bookID,
+      Cover: "Big",
+      OptResult: "ratingInfo, packing",
     },
   });
 };
 
-export default function useBookByISBN(isbn) {
+export default function useBookByID(bookID) {
   return useQuery({
-    queryKey: ["bookByISBN", isbn],
-    queryFn: () => fetchBookByISBN(isbn),
+    queryKey: ["bookByID", bookID],
+    queryFn: () => fetchBookByID(bookID),
     select: (result) => {
       return result.data.item?.[0] || null;
     },
-    enabled: !!isbn,
+    enabled: !!bookID,
     keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
   });
