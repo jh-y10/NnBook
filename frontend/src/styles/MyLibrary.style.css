@@ -21,6 +21,10 @@
   padding: 1rem;
 }
 
+.libraryBookList p {
+  margin: 0;
+}
+
 .libraryTitle {
   font-family: "MaruBuriSemiBold";
   font-size: 25px;

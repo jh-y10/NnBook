@@ -102,7 +102,6 @@ const MyLibraryDetail = () => {
             <div className="libraryDetailBookInfo">
               <div>
                 <img
-                  className="libraryDetailBookImage"
                   src={book.cover}
                   alt={book.title ? book.title.split(" - ")[0] : ""}
                 />

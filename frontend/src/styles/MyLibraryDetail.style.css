@@ -32,10 +32,6 @@
   padding-bottom: 1.5rem;
 }
 
-.libraryDetailBookImage {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.22);
-}
-
 .libraryDetailInfoText {
   display: flex;
   flex-direction: column;
