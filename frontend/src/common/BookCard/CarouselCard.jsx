@@ -9,8 +9,8 @@ export default function BookCard({ bookID }) {
   const navigate = useNavigate();
 
   const moveToDetail = (bookID) => {
-    navigate(`/books/${bookID}`);
-  }
+    navigate(`/library/${bookID}`);
+  };
 
   if (isLoading) return <div>Loading...</div>;
 

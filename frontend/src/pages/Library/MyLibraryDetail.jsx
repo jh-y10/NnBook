@@ -189,6 +189,7 @@ const MyLibraryDetail = () => {
             <Button
               className="libraryDetailInputButton"
               onClick={handleAddEntry}
+              disabled={progress === 100}
             >
               +
             </Button>
