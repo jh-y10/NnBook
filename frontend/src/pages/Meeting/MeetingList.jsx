@@ -91,17 +91,23 @@ const MeetingList = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.data.map((meeting) => (
-                <tr
-                  key={meeting.id}
-                  className="meeting-row"
-                  onClick={() => goToMeetingDetail(meeting.id)}
-                >
-                  <td>{meeting.title}</td>
-                  <td>{translateKorean(meeting.location)}</td>
-                  <td>{meeting.date.slice(0, 10)}</td>
+              {data?.data.length === 0 ? (
+                <tr>
+                  <td>현재 등록된 모임이 없습니다.</td>
                 </tr>
-              ))}
+              ) : (
+                data?.data.map((meeting) => (
+                  <tr
+                    key={meeting.id}
+                    className="meeting-row"
+                    onClick={() => goToMeetingDetail(meeting.id)}
+                  >
+                    <td>{meeting.title}</td>
+                    <td>{translateKorean(meeting.location)}</td>
+                    <td>{meeting.date.slice(0, 10)}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
           <ReactPaginate

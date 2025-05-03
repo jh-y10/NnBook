@@ -76,6 +76,11 @@ body {
   font-family: "MaruBuriBold", serif;
 }
 
+.recommend-section h2 {
+  font-size: 26px;
+  color: #4b4b4b;
+}
+
 .recommend-grid {
   margin-top: 2rem;
   display: grid;

@@ -20,7 +20,7 @@ export default function Rental() {
   if (error)     return <p>에러 발생: {error.message}</p>;
 
   return (
-    <Container className="py-4">
+    <Container className="py-4 rental-container">
       <h4 className="mb-3 rental-list">대여 가능 도서 목록 {'  '}
       <span
          className="more-link"
