@@ -94,11 +94,17 @@ body {
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
+  margin-bottom: 200px;
 }
 
 .join-button-box button {
   border: none;
+  margin-right: 20px;
   background-color: #f6a89e;
+}
+
+.join-button-box button:last-child {
+  margin: 0;
 }
 
 .join-button-box button:hover,

@@ -83,6 +83,7 @@ body {
   align-items: center;
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
   color: #4b4b4b;
 }
 
@@ -97,6 +98,10 @@ tbody tr {
   justify-content: space-around;
   width: 100%;
   border-bottom: 1px solid #e3dcd2;
+}
+
+thead tr {
+  padding-bottom: 10px;
 }
 
 tbody tr {
@@ -115,6 +120,12 @@ tbody tr td:nth-child(2) {
 
 tbody tr td:first-child {
   padding-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+tbody tr td:last-child {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -142,9 +153,14 @@ tbody tr td:first-child {
   width: 50%;
 }
 
+.meeting-row:hover td {
+  color: #f6a89e;
+}
+
 .add-button-area {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 200px;
 }
 
 .add-button-area button {
@@ -161,7 +177,6 @@ tbody tr td:first-child {
 
 .pagination {
   justify-content: center;
-  margin-top: 20px;
 }
 
 .page-item {

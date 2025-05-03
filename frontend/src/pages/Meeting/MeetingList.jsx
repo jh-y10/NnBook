@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,15 +6,74 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
 import ReactPaginate from "react-paginate";
 import "../../styles/MeetingList.style.css";
+import { useMeetingQuery } from "../../hooks/useMeetingQuery";
 
 const MeetingList = () => {
+  const [page, setPage] = useState(1);
+  const pageSize = 10;
+  const { data, isLoading, isError, error } = useMeetingQuery(page, pageSize);
+
   const navigate = useNavigate();
 
   const goToCreateMeeting = () => {
     navigate("/meeting/create");
   };
 
-  const handlePageClick = () => {};
+  const goToMeetingDetail = (id) => {
+    navigate(`/meeting/${id}`);
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setPage(selected + 1);
+  };
+
+  const translateKorean = (location) => {
+    switch (location) {
+      case "seoul":
+        return "서울";
+        break;
+      case "incheon":
+        return "인천";
+        break;
+      case "daejeon":
+        return "대전";
+        break;
+      case "daegu":
+        return "대구";
+        break;
+      case "busan":
+        return "부산";
+        break;
+      case "ulsan":
+        return "울산";
+        break;
+      case "gwangju":
+        return "광주";
+        break;
+      case "gyeonggi":
+        return "경기";
+        break;
+      case "gangwon":
+        return "강원";
+        break;
+      case "chungcheong":
+        return "충청";
+        break;
+      case "jeolla":
+        return "전라";
+        break;
+      case "gyeongsang":
+        return "경상";
+        break;
+      case "jeju":
+        return "제주";
+        break;
+    }
+  };
+
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <Container>
@@ -27,26 +86,22 @@ const MeetingList = () => {
             <thead>
               <tr>
                 <th scope="col">제목</th>
-                <th scope="col">이름</th>
-                <th scope="col">작성일</th>
+                <th scope="col">지역</th>
+                <th scope="col">모임 날짜</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>테스트 제목</td>
-                <td>닉네임</td>
-                <td>25-04-30</td>
-              </tr>
-              <tr>
-                <td>테스트 제목 길게도 써봐야지 음음</td>
-                <td>닉네임임</td>
-                <td>25-04-30</td>
-              </tr>
-              <tr>
-                <td>짧</td>
-                <td>닉네임이길어요</td>
-                <td>25-04-30</td>
-              </tr>
+              {data?.data.map((meeting) => (
+                <tr
+                  key={meeting.id}
+                  className="meeting-row"
+                  onClick={() => goToMeetingDetail(meeting.id)}
+                >
+                  <td>{meeting.title}</td>
+                  <td>{translateKorean(meeting.location)}</td>
+                  <td>{meeting.date.slice(0, 10)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <ReactPaginate
@@ -54,7 +109,7 @@ const MeetingList = () => {
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            pageCount="5"
+            pageCount={data?.total}
             previousLabel="<"
             pageClassName="page-item"
             pageLinkClassName="page-link"
@@ -68,7 +123,7 @@ const MeetingList = () => {
             containerClassName="pagination"
             activeClassName="active"
             renderOnZeroPageCount={null}
-            forcePage="0"
+            forcePage={page - 1}
           />
           <div className="add-button-area">
             <Button type="button" size="lg" onClick={goToCreateMeeting}>

@@ -19,6 +19,13 @@
   max-width: 100%;
 }
 
+.more-link {
+  font-size: 0.875rem;       
+  text-decoration: underline;
+  color: #333;            
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .rental-search-input {
     max-width: 20ch;
