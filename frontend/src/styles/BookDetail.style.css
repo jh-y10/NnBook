@@ -46,12 +46,12 @@
 
 .detail-buttons button:hover{
   background-color: #d8f69e;
-  color: black;
+  color: #4b4b4b;
 }
 
 .detail-buttons button:active{
   background-color: #d8f69e !important;
-  color: black !important;
+  color: #4b4b4b !important;
 }
 
 .bookdetail-bottom{
@@ -90,7 +90,7 @@
 
 .bookdetail-list a{
   text-decoration: none;
-  color: black;
+  color: #4b4b4b;
 }
 
 @media screen and (max-width: 738px){
