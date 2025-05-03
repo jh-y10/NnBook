@@ -116,7 +116,6 @@ const MeetingDetail = () => {
                   }
                 })}
               </p>
-              <p>참여인원:</p>
             </div>
           </div>
           <div className="join-button-box">
@@ -134,9 +133,6 @@ const MeetingDetail = () => {
                 );
               }
             })}
-            <Button type="button" size="lg">
-              참가
-            </Button>
           </div>
         </Col>
       </Row>
