@@ -1,30 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
+import { useCreateMeeting } from "../../hooks/useCreateMeeting";
 import "../../styles/CreateMeeting.style.css";
 
 const CreateMeeting = () => {
+  const [form, setForm] = useState({
+    leaderEmail: "",
+    title: "",
+    location: "",
+    date: "",
+    time: "",
+    content: "",
+  });
   const navigate = useNavigate();
+  const { mutate } = useCreateMeeting();
 
-  const goToMeetingList = (event) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/meeting");
+
+    mutate(form, {
+      onSuccess: () => {
+        navigate("/meeting");
+      },
+      onError: (err) => {
+        console.error("에러 발생:", err);
+        alert(err.response?.data?.message || "모임 생성 실패");
+      },
+    });
   };
 
   return (
     <Container>
       <Row>
         <Col lg={12}>
-          <h1 className="create-title">모임 만들기</h1>
-        </Col>
-        <Col lg={12}>
           <div className="create-box">
-            <form method="POST" action="#">
+            <form method="POST" action="#" onSubmit={handleSubmit}>
+              <div className="create-title">
+                <input
+                  type="text"
+                  name="title"
+                  value={form.title}
+                  onChange={handleChange}
+                  maxLength="50"
+                  placeholder="제목"
+                  required
+                />
+              </div>
               <label htmlFor="location-dropdown">지역:</label>
-              <select name="location" id="location-dropdown">
+              <select
+                name="location"
+                value={form.location}
+                onChange={handleChange}
+                id="location-dropdown"
+                required
+              >
+                <option value="">선택</option>
                 <option value="seoul">서울</option>
                 <option value="incheon">인천</option>
                 <option value="daejeon">대전</option>
@@ -41,19 +80,46 @@ const CreateMeeting = () => {
               </select>
               <br />
               <label htmlFor="input-date">날짜:</label>
-              <input type="date" id="input-date" />
+              <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={handleChange}
+                id="input-date"
+                required
+              />
               <br />
               <label htmlFor="input-time">시간:</label>
-              <input type="time" id="input-time" />
+              <input
+                type="time"
+                name="time"
+                value={form.time}
+                onChange={handleChange}
+                id="input-time"
+                required
+              />
+              <br />
+              <label htmlFor="input-email">이메일</label>
+              <input
+                type="email"
+                name="leaderEmail"
+                value={form.leaderEmail}
+                onChange={handleChange}
+                placeholder="계정 이메일을 입력하세요"
+                id="input-email"
+                required
+              ></input>
               <br />
               <label htmlFor="input-textarea">세부 내용</label>
-              <textarea name="detail-info" id="input-textarea"></textarea>
+              <textarea
+                name="content"
+                value={form.content}
+                onChange={handleChange}
+                id="input-textarea"
+                required
+              ></textarea>
               <div className="button-box">
-                <Button
-                  type="submit"
-                  size="lg"
-                  onClick={(event) => goToMeetingList(event)}
-                >
+                <Button type="submit" size="lg">
                   등록
                 </Button>
               </div>

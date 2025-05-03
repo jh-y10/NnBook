@@ -1,8 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosDB from "../utils/axiosDB";
+import axiosMeetingDB from "../utils/axiosMeetingDB";
 
-export const useMeetingQuery = () => {
+const fetchMeeting = async (page, pageSize) => {
+  const res = await axiosMeetingDB.get("/view", {
+    params: { page, pageSize },
+  });
+  return res.data;
+};
+
+export const useMeetingQuery = (page = 1, pageSize = 10) => {
   return useQuery({
-    queryKey: ["meetings"],
+    queryKey: ["meetings", page],
+    queryFn: () => fetchMeeting(page, pageSize),
+    keepPreviousData: true,
   });
 };

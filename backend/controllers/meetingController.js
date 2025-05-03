@@ -4,11 +4,12 @@ import {
   fetchAllMeetings,
   addNewMember,
   fetchAllMembers,
+  fetchTotalMeetingCount,
 } from "../models/meetingModel.js";
 
 //모임추가
 export const createMeeting = async (req, res) => {
-  const { leaderEmail, location, date, time, bookID, title } = req.body;
+  const { leaderEmail, location, date, time, title, content } = req.body;
   try {
     const existingLeader = await findMeetingByEmail(leaderEmail);
     if (existingLeader) {
@@ -17,7 +18,7 @@ export const createMeeting = async (req, res) => {
         .json({ message: "모임은 1인당 최대 한개씩만 생성 가능합니다" });
     }
 
-    await addNewMeeting(leaderEmail, location, date, time, bookID, title);
+    await addNewMeeting(leaderEmail, location, date, time, title, content);
 
     res.status(201).json({ message: "모임 추가 완료!" });
   } catch (error) {
@@ -29,8 +30,12 @@ export const createMeeting = async (req, res) => {
 //모임리스트 조회
 export const getAllMeetings = async (req, res) => {
   try {
-    const rows = await fetchAllMeetings();
-    res.status(200).json(rows);
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 10;
+
+    const meetings = await fetchAllMeetings(page, pageSize);
+    const total = await fetchTotalMeetingCount();
+    res.json({ data: meetings, total });
   } catch (error) {
     console.error("모임 조회 실패:", error);
     res.status(500).json({ message: "서버 오류, 조회 실패" });

@@ -83,6 +83,7 @@ body {
   align-items: center;
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
   color: #4b4b4b;
 }
 
@@ -120,6 +121,12 @@ tbody tr td:first-child {
   overflow: hidden;
 }
 
+tbody tr td:last-child {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 thead tr th {
   font-family: "MaruBuriBold", serif;
   font-weight: 600;
@@ -142,6 +149,10 @@ tbody tr td:first-child {
   width: 50%;
 }
 
+.meeting-row:hover td {
+  color: #f6a89e;
+}
+
 .add-button-area {
   display: flex;
   justify-content: flex-end;
@@ -162,7 +173,6 @@ tbody tr td:first-child {
 
 .pagination {
   justify-content: center;
-  margin-top: 20px;
 }
 
 .page-item {
