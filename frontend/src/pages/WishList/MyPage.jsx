@@ -8,11 +8,25 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMyInfoQuery } from '../../hooks/useMyInfoQuery';
 import { useLocationMutation } from '../../hooks/useLocationMutation';
+import SingleLineCarousel from '../../common/react-multi-carousel/SingleLineCarousel';
+import { useReadingBooksQuery } from '../../hooks/useReadingBooks';
+import { useNavigate } from 'react-router';
+import { useLikedBooksQuery } from '../../hooks/useLikedBooks';
+import { useBorrowingBooksQuery } from '../../hooks/useBorrowingBooks';
 
 const MyPage = () => {
   const [form, setForm] = useState({ location: "" });
   const { data:mydata, isLoading, isError, error } = useMyInfoQuery();
+  const { data:readingdata } = useReadingBooksQuery();
+  const { data:borrowdata } = useBorrowingBooksQuery();
+  const { data:likedata } = useLikedBooksQuery();
   const { mutate: updateLocation } = useLocationMutation();
+  const navigate = useNavigate();
+
+  //내서재 더보기
+  const moveToLibrary = () => {
+    navigate(`/library`);
+  }
 
   //위치정보
   const getLocation = () => {
@@ -68,20 +82,29 @@ const MyPage = () => {
         </Row>
         <Row>
           <Col lg={12}>
-            <h1 className='mypage-title'>내 서재</h1>
-            <div>박스</div>
+            <div className='go-library'>
+              <h1 className='mypage-title'>내 서재</h1>
+              <button onClick={moveToLibrary} className='my-lib'>더보기</button>
+            </div>
+            <div>
+            {readingdata?.length > 0 && (<SingleLineCarousel books={readingdata} />)}
+            </div>
           </Col>
         </Row>
         <Row>
           <Col lg={12}>
             <h1 className='mypage-title'>대여중인 책</h1>
-            <div>박스</div>
+            <div>
+            {borrowdata?.length > 0 && (<SingleLineCarousel books={borrowdata} />)}
+            </div>
           </Col>
         </Row>
         <Row>
           <Col lg={12}>
             <h1 className='mypage-title'>좋아요 한 책</h1>
-            <div>박스</div>
+            <div>
+            {likedata?.length > 0 && (<SingleLineCarousel books={likedata} />)}
+            </div>
           </Col>
         </Row>
       </Container>

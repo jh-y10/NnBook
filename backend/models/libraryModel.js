@@ -1,9 +1,9 @@
 import { db } from "../config/db.js";
 
-export const findReadingBooks = async (ownerEmail, holderEmail) => {
+export const findReadingBooks = async (email) => {
   const [rows] = await db.query(
     `SELECT id, bookID FROM userlibrary WHERE (ownerEmail = ? OR holderEmail = ?) AND status = "reading"`,
-    [ownerEmail, holderEmail]
+    [email, email]
   );
   return rows;
 };
@@ -38,4 +38,20 @@ export const changeStatus = async (bookID) => {
     [bookID]
   );
   return result;
+};
+
+export const changeLike = async (bookID) => {
+  const [result] = await db.query(
+    "UPDATE userlibrary SET isLiked = true WHERE bookID = ? AND status = 'finished'",
+    [bookID]
+  );
+  return result;
+};
+
+export const findLiked = async (email) => {
+  const [rows] = await db.query(
+    `SELECT id, bookID FROM userlibrary WHERE (ownerEmail = ? OR holderEmail = ?) AND isLiked = true`,
+    [email, email]
+  );
+  return rows;
 };

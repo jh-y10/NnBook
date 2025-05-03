@@ -1,10 +1,16 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import "/src/styles/BookCard.style.css";
+import { useNavigate } from "react-router";
 
 export default function BookCard({ book, onClick }) {
+  const navigate = useNavigate();
+
+  const goToDetail = () => {
+    navigate(`/books/${book.itemId}`);
+  }
   return (
-    <Col>
+    <Col onClick={goToDetail}>
       <img
         src={book.cover?.replace("/api/image-proxy?url=", "")}
         alt={book.title}

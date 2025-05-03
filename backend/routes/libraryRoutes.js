@@ -5,7 +5,10 @@ import {
   getFinished,
   getLendedBooks,
   changeToFinished,
+  changeToLiked,
+  getLikedBooks,
 } from "../controllers/libraryController.js";
+import { verifyToken } from "../middlewares/veryfyToken.js";
 
 const router = express.Router();
 
@@ -14,11 +17,14 @@ const router = express.Router();
 // 내가 대여해준 도서 조회 - isLendable true(대여등록한 책들)이란 전제 하에
 // 책 내서재에 추가하기(읽는중상태로 감) - 상세페이지에서 내가 추가할경우 ownerEmail == holderEmail, 내가 빌린 책일경우 owner != holder
 //책 다읽음 상태로 변경
-router.get("/reading", getReading);
+//책 좋아요하기
+router.get("/reading", verifyToken, getReading);
 router.post("/reading", addReading);
 router.get("/finished", getFinished);
 router.patch("/finished", changeToFinished);
 router.get("/lended", getLendedBooks);
+router.get("/liked", verifyToken, getLikedBooks);
+router.patch("/liked", changeToLiked);
 
 // router.get("/reading", (req, res) => {
 //   const { ownerEmail, holderEmail } = req.query;
@@ -44,5 +50,15 @@ router.get("/lended", getLendedBooks);
 //   const { ownerEmail } = req.query;
 //   res.json({ message: "조회 성공" });
 // });
+
+router.patch("/liked", (req, res) => {
+  const { bookID } = req.body;
+  res.status(201).json({ message: "좋아요 표시됨", bookID });
+});
+
+router.get("/liked", (req, res) => {
+  const { ownerEmail, holderEmail } = req.query;
+  res.json({ message: "조회 성공" });
+});
 
 export default router;

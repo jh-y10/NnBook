@@ -4,15 +4,16 @@ import {
   fetchAllBookLend,
   FetchBorrowReq,
   SendNotification,
+  findBorrowingBook,
 } from "../models/borrowModel.js";
 
 import { db } from "../config/db.js";
 
 //대여도서 등록
 export const addBookLend = async (req, res) => {
-  const { libraryID, location, startTime, endTime } = req.body;
+  const { libraryID, location, startDate, endDate } = req.body;
   try {
-    await FetchNewBookLend(libraryID, location, startTime, endTime);
+    await FetchNewBookLend(libraryID, location, startDate, endDate);
 
     await changeLendStatus(libraryID);
 
@@ -121,5 +122,17 @@ export const rejectBorrowRequest = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "서버 오류" });
+  }
+};
+
+//내가 빌린 책 보기
+export const getBorrowingBook = async (req, res) => {
+  const { email } = req.user; //토큰에서 가져오기
+  try {
+    const reading = await findBorrowingBook(email);
+    res.status(200).json(reading);
+  } catch (error) {
+    console.error("조회 실패:", error);
+    res.status(500).json({ message: "조회 중 오류 발생" });
   }
 };
