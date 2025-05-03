@@ -32,16 +32,17 @@ export default function Rental() {
 
   return (
     <Container className="py-4 rental-container">
-      <h4 className="mb-3 rental-list">
-        대여 가능 도서 목록{" "}
-        <span
-          className="more-link"
-          style={{ cursor: "pointer", fontSize: "0.9em", marginLeft: "10px" }}
-          onClick={() => navigate('/rental')}
-        >
-          more
-        </span>
-      </h4>
+      <div className="rental-home-title">
+        <h4 className="mb-3 rental-list">
+          대여 가능 도서 목록{" "}
+        </h4>
+        <div
+            className="more-link"
+            onClick={() => navigate('/rental')}
+          >
+            more
+        </div>
+      </div>
 
       <Row xs={1} sm={3} md={5} className="gx-1 gy-1 justify-content-center justify-content-sm-start">
         {books.map((book) => (

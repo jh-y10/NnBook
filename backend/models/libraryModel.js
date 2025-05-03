@@ -8,18 +8,18 @@ export const findReadingBooks = async (email) => {
   return rows;
 };
 
-export const findFinishedBooks = async (ownerEmail, holderEmail) => {
+export const findFinishedBooks = async (email) => {
   const [rows] = await db.query(
     `SELECT id, bookID FROM userlibrary WHERE (ownerEmail = ? OR holderEmail = ?) AND status = "finished"`,
-    [ownerEmail, holderEmail]
+    [email, email]
   );
   return rows;
 };
 
-export const findLendedBooks = async (ownerEmail) => {
+export const findLendedBooks = async (email) => {
   const [rows] = await db.query(
     `SELECT id, bookID FROM userlibrary WHERE ownerEmail = ? AND  isBorrowed = true`,
-    [ownerEmail]
+    [email]
   );
   return rows;
 };
