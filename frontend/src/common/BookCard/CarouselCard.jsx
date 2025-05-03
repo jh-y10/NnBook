@@ -17,6 +17,8 @@ export default function BookCard({ bookID }) {
   if (isError)
     return <Alert variant="danger">불러오기 실패: {error.message}</Alert>;
 
+  if (!bookinfo) return null;
+
   return (
     <div className="bookcard-contents" onClick={() => moveToDetail(bookID)}>
       <img

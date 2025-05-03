@@ -15,7 +15,7 @@ export const addBookLend = async (req, res) => {
   const { bookId, location, startDate, endDate } = req.body;
   try {
     const { email } = req.user; //토큰에서 가져오기
-    await FetchNewBookLend(email, bookId, location, startDate, endDate);
+    await FetchNewBookLend(bookId, email, location, startDate, endDate);
 
     //대여등록 상태 true로 바꾸기
     await changeLendStatus(bookId);
