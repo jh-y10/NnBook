@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import "../../styles/MyLibraryDetail.style.css";
-import useBookByISBN from "../../hooks/useBookbyID";
+import useBookByID from "../../hooks/useBookbyID";
+import { useParams } from "react-router";
 
 const MyLibraryDetail = () => {
   const [entries, setEntries] = useState([]);
@@ -19,12 +20,14 @@ const MyLibraryDetail = () => {
   const [showCompleteProgressBar, setShowCompleteProgressBar] = useState(false);
   const [showValidationMessage, setShowValidationMessage] = useState(false);
 
-  const [review, setReview] = useState("");
   const [likeStatus, setLikeStatus] = useState(null);
 
-  const isbn = "9788932043562"; // 우선 하드코딩
+  // const isbn = "9788932043562"; // 우선 하드코딩
 
-  const { data: book, isLoading, error } = useBookByISBN(isbn);
+  const { bookID } = useParams();
+  console.log(bookID); // bookID 값 확인
+
+  const { data: book, isLoading, error } = useBookByID(bookID);
 
   useEffect(() => {
     if (book && book?.subInfo?.itemPage) {
@@ -101,7 +104,7 @@ const MyLibraryDetail = () => {
                 <img
                   className="libraryDetailBookImage"
                   src={book.cover}
-                  alt={book.title?.split(" - ")[0]}
+                  alt={book.title ? book.title.split(" - ")[0] : ""}
                 />
               </div>
               <div className="libraryDetailInfoText">
@@ -112,13 +115,10 @@ const MyLibraryDetail = () => {
                     {book?.categoryName.split(">")[1]}
                   </h6>
                 </div>
-                {review && likeStatus && (
+                {likeStatus && (
                   <div className="libraryDetailBoxStroke libraryDetailRAL">
                     <div className="libraryDetailLike">
                       {likeStatus === "like" ? "👍 Like" : "👎 Dislike"}
-                    </div>
-                    <div className="libraryDetailReview">
-                      <p>한줄 리뷰: </p> {review}
                     </div>
                   </div>
                 )}
@@ -211,17 +211,9 @@ const MyLibraryDetail = () => {
             <Form.Group className="mt-3">
               {showValidationMessage && (
                 <p className="text-danger mt-3">
-                  리뷰를 작성하고 좋아요/싫어요 중 하나를 선택해주세요.
+                  좋아요/싫어요 중 하나를 선택해주세요.
                 </p>
               )}
-              <Form.Label>한줄 리뷰</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={1}
-                placeholder="이 책 어땠나요? 간단히 적어보세요 :)"
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-              />
             </Form.Group>
 
             <div className="d-flex justify-content-around mt-3">
@@ -229,7 +221,7 @@ const MyLibraryDetail = () => {
                 variant={likeStatus === "like" ? "success" : "outline-success"}
                 onClick={() => setLikeStatus("like")}
               >
-                <i class="fa-solid fa-thumbs-up"></i> Like
+                👍 Like
               </Button>
               <Button
                 variant={likeStatus === "dislike" ? "danger" : "outline-danger"}
@@ -243,7 +235,7 @@ const MyLibraryDetail = () => {
             <Button
               variant="primary"
               onClick={() => {
-                if (!review.trim() || !likeStatus) {
+                if (!likeStatus) {
                   setShowValidationMessage(true);
                 } else {
                   setShowCompleteModal(false);
