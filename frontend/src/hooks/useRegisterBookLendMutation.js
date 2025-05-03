@@ -10,7 +10,7 @@ const registerBookLend = async ({ bookID, ownerEmail, holderEmail }) => {
   return res.data;
 };
 
-export default function useRegisterBookLendMutation() {
+export function useRegisterBookLendMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({

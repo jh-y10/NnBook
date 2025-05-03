@@ -41,7 +41,7 @@ const books = bookQueries
 
   return(
     <>
-    <Container className="py-4">
+    <Container className="py-4 rental-container">
       <Row className="align-items-center mb-5">
         <Col xs={12} md="auto">
           <strong className="rental-list">대여 가능 도서 목록</strong>
