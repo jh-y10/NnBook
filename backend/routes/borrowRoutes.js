@@ -19,7 +19,7 @@ router.patch("/borrowreq", verifyToken, borrowBook);
 router.get("/borrowing", verifyToken, getBorrowingBook);
 
 router.post("/booklend", (req, res) => {
-  const { bookId, ownerEmail, location, startDate, endDate } = req.body;
+  const { bookID, ownerEmail, location, startDate, endDate } = req.body;
   res.status(201).json({ message: "대여가능 도서 등록 완료", bookID });
 });
 
