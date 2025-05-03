@@ -3,13 +3,23 @@ import { Alert } from "react-bootstrap";
 import "/src/styles/CarouselCard.style.css";
 import useBookByID from "../../hooks/useBookbyID";
 import { useNavigate } from "react-router";
+import { useAddToLibraryMutation } from "../../hooks/useAddToLibraryMutation"; // 추가된 훅
+import { useRegisterBookLendMutation } from "../../hooks/useRegisterBookLendMutation"; // 추가된 훅
 
-export default function BookCard({ bookID }) {
-  const { data: bookinfo, isLoading, isError, error } = useBookByID(bookID);
+export default function BookCard({ bookID, libraryBookStatus, email }) {
+  const { data: bookinfo, isLoading, isError } = useBookByID(bookID);
   const navigate = useNavigate();
+
+  const { mutate: addToLibrary } = useAddToLibraryMutation();
+  const { mutate: registerBookLend } = useRegisterBookLendMutation();
 
   const moveToDetail = (bookID) => {
     navigate(`/library/${bookID}`);
+  };
+
+  const handleRegisterLend = () => {
+    registerBookLend({ bookID, ownerEmail: email, holderEmail: email });
+    addToLibrary({ bookID, email });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -33,7 +43,9 @@ export default function BookCard({ bookID }) {
         {bookinfo.title}
       </h6>
       <p className="text-muted truncate">{bookinfo.author}</p>
-      {libraryBookStatus === "finished" && <button>대여 등록</button>}
+      {libraryBookStatus === "finished" && (
+        <button onClick={handleRegisterLend}>대여 등록</button>
+      )}
     </div>
   );
 }
