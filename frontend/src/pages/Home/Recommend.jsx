@@ -15,13 +15,16 @@ const Recommend = ({ previewCount }) => {
 
   if (error) return <Alert variant="danger">{error.message}</Alert>;
 
-  const recommended = previewCount ? books?.slice(0, previewCount) : books;
+  // 안전하게 배열 체크
+  const recommended = Array.isArray(books)
+    ? books.slice(0, previewCount || books.length)
+    : [];
 
   return (
     <div className="recommend-section">
       <h2>취향 기반 추천 도서</h2>
       <div className="recommend-grid">
-        {recommended?.map((book, idx) => (
+        {recommended.map((book, idx) => (
           <div key={idx} className="recommend-card">
             <img
               src={book.cover?.replace("/api/image-proxy?url=", "")}
