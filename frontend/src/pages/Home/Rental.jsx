@@ -36,8 +36,8 @@ export default function Rental() {
         대여 가능 도서 목록{" "}
         <span
           className="more-link"
-          onClick={() => navigate("/rental")}
           style={{ cursor: "pointer", fontSize: "0.9em", marginLeft: "10px" }}
+          onClick={() => navigate('/rental')}
         >
           more
         </span>
@@ -48,9 +48,6 @@ export default function Rental() {
           <Col key={book.itemId || book.id}>
             <BookCard
               book={book}
-              onClick={() => navigate(`/rental/${book.itemId || book.id}`, {
-                state: { book }
-              })}
             />
           </Col>
         ))}

@@ -8,7 +8,7 @@ const fetchLendableBooks = async () => {
 
 export const useLendableBooksQuery = () => {
   return useQuery({
-    queryKey: ["books-liked"],
+    queryKey: ["books-lendable"],
     queryFn: fetchLendableBooks,
     retry: false, // 토큰 오류 시 무한 재시도 방지
   });

@@ -21,23 +21,32 @@
     color: #444;
   }
 
+.rental-buttons{
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
 .rental-detail {
-    background-color: #e3dcd2 !important;
-    border-color:     #e3dcd2 !important;
-    color:            #333    !important;               
+    background-color: #f6a89e !important;
+    border-color:     #f6a89e !important;              
   }
   
 .rental-detail:hover,
 .rental-detail:focus {
-    background-color: #d8c8bf !important; 
-    border-color:     #d8c8bf !important;
-    color:            #222    !important;
+    background-color: #d8f69e !important; 
+    border-color:     #d8f69e !important;
+    color:            #4b4b4b    !important;
   }
 
 @media (max-width: 576px) {
   .book-detail-card {
       width: 150px;    
     }
+  }
+  .rental-buttons{
+    justify-content: center;
+    gap: 2em;
   }
   
 @media (min-width: 577px) and (max-width: 768px) {

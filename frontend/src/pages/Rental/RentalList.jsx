@@ -53,7 +53,6 @@ const books = bookQueries
           <BookCard
             key={book.itemId || book.id}                       
             book={book}                            
-            onClick={() => navigate(`/rental/${book.itemId || book.id}`,{ state: { book } })}  
           />
         ))}
       </Row>
