@@ -7,7 +7,7 @@ import useBooks from "../../hooks/useBooks";
 import "../../styles/RentalList.style.css";
 
 
-export default function RentalList() {
+export default function Rental() {
   const navigate = useNavigate();
 
   //const { data: lendables = [], isLoading, error } = useLendables();
