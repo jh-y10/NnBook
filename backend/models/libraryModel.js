@@ -34,7 +34,7 @@ export const addNewBook = async (bookID, ownerEmail, holderEmail) => {
 
 export const changeStatus = async (bookID) => {
   const [result] = await db.query(
-    "UPDATE userlibrary SET status = 'finished' WHERE bookID = ?",
+    "UPDATE userlibrary SET status = 'finished' WHERE bookId = ?",
     [bookID]
   );
   return result;
@@ -42,7 +42,7 @@ export const changeStatus = async (bookID) => {
 
 export const changeLike = async (bookID) => {
   const [result] = await db.query(
-    "UPDATE userlibrary SET isLiked = true WHERE bookID = ? AND status = 'finished'",
+    "UPDATE userlibrary SET isLiked = true WHERE bookId = ? AND status = 'finished'",
     [bookID]
   );
   return result;
