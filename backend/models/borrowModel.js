@@ -7,8 +7,8 @@ export const FetchNewBookLend = async (
   endTime
 ) => {
   const [result] = await db.query(
-    "INSERT INTO registerbooklend (libraryID, location, startTime, endTime) VALUES (?, ?, ?, ?)",
-    [libraryID, location, startTime, endTime]
+    "INSERT INTO registerbooklend (libraryID, location, startDate, endDate) VALUES (?, ?, ?, ?)",
+    [libraryID, location, startDate, endDate]
   );
   return result;
 };

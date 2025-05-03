@@ -29,7 +29,7 @@ function App() {
           <Route path="recommend" element={<Recommend />} />
           <Route path="books">
             <Route index element={<BookList />} />
-            <Route path=":id" element={<BookDetail />} />
+            <Route path=":bookID" element={<BookDetail />} />
           </Route>
           <Route
             path="mypage"
