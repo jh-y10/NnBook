@@ -14,13 +14,12 @@ export const addBookLend = async (req, res) => {
   try {
     await FetchNewBookLend(libraryID, location, startTime, endTime);
 
-    if (res.status(201).json({ message: "대여도서 추가 완료!" })) {
-      //내 서재의 도서 상태 대여가능으로 바꾸기
-      await changeLendStatus(libraryID);
-    }
+    await changeLendStatus(libraryID);
+
+    return res.status(201).json({ message: "대여도서 추가 완료!" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "서버 에러" });
+    console.error("addBookLend 오류:", error);
+    return res.status(500).json({ message: "서버 에러" });
   }
 };
 

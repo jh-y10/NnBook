@@ -8,3 +8,13 @@ export const db = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
+
+(async () => {
+  try {
+    const [rows] = await db.query("SELECT 1");
+    console.log("✅ DB 연결 성공:", rows);
+  } catch (err) {
+    console.error("❌ DB 연결 실패:", err.message);
+    process.exit(1);
+  }
+})();
