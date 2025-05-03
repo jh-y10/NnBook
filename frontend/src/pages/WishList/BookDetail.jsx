@@ -28,6 +28,11 @@ const BookDetail = () => {
     addBook({ bookID: Number(bookID), email: mydata.email });
   };
 
+  //대여신청
+  const goToRental = () => {
+    navigate(`/rental/${bookID}`);
+  }
+
   if(isLoading) return <div>Loading...</div>
   
 
@@ -51,7 +56,7 @@ const BookDetail = () => {
           </div>
           <div className="detail-buttons">
           <Button variant="primary" size="lg" onClick={addToLibrary}>내 서재 추가</Button>
-          <Button variant="primary" size="lg">대여 신청</Button>
+          <Button variant="primary" size="lg" onClick={goToRental}>대여 신청</Button>
           </div>
         </Col>
       </Row>

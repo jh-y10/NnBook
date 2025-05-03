@@ -5,7 +5,7 @@ import useBookByID from "../../hooks/useBookbyID";
 import { useNavigate } from "react-router";
 
 export default function BookCard({ bookID }) {
-  const { data: bookinfo, isLoading, isError } = useBookByID(bookID);
+  const { data: bookinfo, isLoading, isError, error } = useBookByID(bookID);
   const navigate = useNavigate();
 
   const moveToDetail = (bookID) => {
