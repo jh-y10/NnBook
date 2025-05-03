@@ -10,7 +10,7 @@ export default function BookCard({ book, onClick }) {
     navigate(`/books/${book.itemId}`);
   }
   return (
-    <Col onClick={goToDetail}>
+    <Col onClick={goToDetail} className="card-col">
       <img
         src={book.cover?.replace("/api/image-proxy?url=", "")}
         alt={book.title}
