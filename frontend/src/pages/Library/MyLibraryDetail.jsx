@@ -3,6 +3,8 @@ import { Button, Form, Modal } from "react-bootstrap";
 import "../../styles/MyLibraryDetail.style.css";
 import useBookByID from "../../hooks/useBookbyID";
 import { useParams } from "react-router";
+import { useLikeBookMutation } from "../../hooks/useLikeBookMutation";
+import { useMyInfoQuery } from "../../hooks/useMyInfoQuery";
 
 const MyLibraryDetail = () => {
   const [entries, setEntries] = useState([]);
@@ -22,12 +24,14 @@ const MyLibraryDetail = () => {
 
   const [likeStatus, setLikeStatus] = useState(null);
 
-  // const isbn = "9788932043562"; // 우선 하드코딩
-
   const { bookID } = useParams();
-  console.log(bookID); // bookID 값 확인
+  console.log(bookID);
 
   const { data: book, isLoading, error } = useBookByID(bookID);
+
+  const { data: mydata } = useMyInfoQuery();
+
+  const { mutate: likeBook } = useLikeBookMutation();
 
   useEffect(() => {
     if (book && book?.subInfo?.itemPage) {
@@ -94,6 +98,15 @@ const MyLibraryDetail = () => {
   const isTotalPagesInputDisabled =
     totalPages > 0 || (book && book?.subInfo?.itemPage);
 
+  const handleLike = (status) => {
+    if (!status) {
+      setShowValidationMessage(true);
+      return;
+    }
+    setLikeStatus(status);
+    likeBook({ bookID, email: mydata.email });
+  };
+
   return (
     <div className="libraryDetailContainer">
       <div>
@@ -114,7 +127,7 @@ const MyLibraryDetail = () => {
                     {book?.categoryName.split(">")[1]}
                   </h6>
                 </div>
-                {likeStatus && (
+                {likeStatus !== null && (
                   <div className="libraryDetailBoxStroke libraryDetailRAL">
                     <div className="libraryDetailLike">
                       {likeStatus === "like" ? "👍 Like" : "👎 Dislike"}
@@ -219,13 +232,13 @@ const MyLibraryDetail = () => {
             <div className="d-flex justify-content-around mt-3">
               <Button
                 variant={likeStatus === "like" ? "success" : "outline-success"}
-                onClick={() => setLikeStatus("like")}
+                onClick={() => handleLike("like")}
               >
                 👍 Like
               </Button>
               <Button
                 variant={likeStatus === "dislike" ? "danger" : "outline-danger"}
-                onClick={() => setLikeStatus("dislike")}
+                onClick={() => handleLike("dislike")}
               >
                 👎 Dislike
               </Button>
@@ -234,54 +247,7 @@ const MyLibraryDetail = () => {
           <Modal.Footer>
             <Button
               variant="primary"
-              onClick={() => {
-                if (!likeStatus) {
-                  setShowValidationMessage(true);
-                } else {
-                  setShowCompleteModal(false);
-                  setShowValidationMessage(false);
-                }
-              }}
-            >
-              닫기
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        <Modal
-          show={showMinusPageModal}
-          onHide={() => setShowMinusPageModal(false)}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>⛔️ 페이지 수 오류</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>입력할 수 없는 수 입니다. 다시 입력해주세요.</Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="primary"
-              onClick={() => setShowMinusPageModal(false)}
-            >
-              닫기
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        <Modal
-          show={showOverPageModal}
-          onHide={() => setShowOverPageModal(false)}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>⛔️ 페이지 수 초과</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            전체 페이지 수를 초과했어요. 다시 입력해주세요.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => setShowOverPageModal(false)}
+              onClick={() => setShowCompleteModal(false)}
             >
               확인
             </Button>
