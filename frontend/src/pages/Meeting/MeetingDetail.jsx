@@ -5,10 +5,15 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import "../../styles/MeetingDetail.style.css";
 import { useMeetingQuery } from "../../hooks/useMeetingQuery";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useMyInfoQuery } from "../../hooks/useMyInfoQuery";
+import { useDeleteMeeting } from "../../hooks/useDeleteMeeting";
 
 const MeetingDetail = () => {
   const { data, isLoading, isError, error } = useMeetingQuery();
+  const { data: userData } = useMyInfoQuery();
+  const deleteMutation = useDeleteMeeting();
+  const navigate = useNavigate();
   let { id } = useParams();
 
   const translateKorean = (location) => {
@@ -54,6 +59,17 @@ const MeetingDetail = () => {
         break;
     }
   };
+
+  const handleDelete = (deleteId) => {
+    if (window.confirm("정말 삭제 하시겠습니까?")) {
+      deleteMutation.mutate(deleteId);
+      navigate("/meeting");
+    }
+  };
+
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <Container>
@@ -104,6 +120,20 @@ const MeetingDetail = () => {
             </div>
           </div>
           <div className="join-button-box">
+            {data?.data.map((meeting) => {
+              if (meeting.id == id && meeting.leaderEmail === userData?.email) {
+                return (
+                  <Button
+                    type="button"
+                    key={meeting.id}
+                    size="lg"
+                    onClick={() => handleDelete(meeting.id)}
+                  >
+                    삭제
+                  </Button>
+                );
+              }
+            })}
             <Button type="button" size="lg">
               참가
             </Button>

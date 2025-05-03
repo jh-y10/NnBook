@@ -23,6 +23,11 @@ export const addNewMeeting = async (
   return result;
 };
 
+export const deleteMeetingById = async (id) => {
+  const [result] = await db.query("DELETE FROM bookclub WHERE id = ?", [id]);
+  return result;
+};
+
 export const fetchAllMeetings = async (page, pageSize) => {
   const offset = (page - 1) * pageSize;
   const [rows] = await db.query(

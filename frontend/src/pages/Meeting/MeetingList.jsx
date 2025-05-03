@@ -71,6 +71,10 @@ const MeetingList = () => {
     }
   };
 
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+
   return (
     <Container>
       <Row>

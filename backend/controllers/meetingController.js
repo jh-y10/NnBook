@@ -5,9 +5,10 @@ import {
   addNewMember,
   fetchAllMembers,
   fetchTotalMeetingCount,
+  deleteMeetingById,
 } from "../models/meetingModel.js";
 
-//모임추가
+//모임 추가
 export const createMeeting = async (req, res) => {
   const { leaderEmail, location, date, time, title, content } = req.body;
   try {
@@ -24,6 +25,17 @@ export const createMeeting = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "서버 에러" });
+  }
+};
+
+//모임 삭제
+export const deleteMeeting = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deleteMeetingById(id);
+    res.status(200).json({ message: "삭제 성공" });
+  } catch (err) {
+    res.status(500).json({ message: "삭제 중 오류 발생", error: err.message });
   }
 };
 
