@@ -33,6 +33,7 @@ export default function BookCard({ bookID }) {
         {bookinfo.title}
       </h6>
       <p className="text-muted truncate">{bookinfo.author}</p>
+      {libraryBookStatus === "finished" && <button>대여 등록</button>}
     </div>
   );
 }

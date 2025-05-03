@@ -42,7 +42,7 @@ const MyLibrary = () => {
         <div className="libraryBoxStroke libraryBookList">
           <div>
             {finisheddata?.length > 0 && (
-              <SingleLineCarousel books={finisheddata} />
+              <SingleLineCarousel books={finisheddata} libraryBookStatus="finished"/>
             )}
           </div>
         </div>
