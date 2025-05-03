@@ -18,19 +18,24 @@ const MyLibrary = () => {
     isError: isReadingError,
   } = useReadingBookQuery({ ownerEmail, holderEmail });
 
-
   const {
     data: finishedBooks,
     isLoading: isFinishedLoading,
     isError: isFinishedError,
   } = useFinishedBooksQuery({ ownerEmail, holderEmail });
-  
 
   const {
     data: lendedBooks,
     isLoading: isLendedLoading,
     isError: isLendedError,
   } = useLendedBooksQuery(ownerEmail);
+
+  console.log("data", mydata);
+  console.log("oe", ownerEmail);
+  console.log("he", holderEmail);
+  console.log("rb", readingBooks);
+  console.log("fb", finishedBooks);
+  console.log("lb", lendedBooks);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -39,7 +44,7 @@ const MyLibrary = () => {
 
   return (
     <div className="libraryContainer container">
-      <h1 className="libraryNameTitle mb-3">{mydata.nickname}님의 서재</h1>
+      <h1 className="libraryNameTitle">{mydata.nickname}님의 서재</h1>
       <div className="section mt-3">
         <h3 className="libraryTitle mb-3">읽고 있는 도서</h3>
         <div className="libraryBoxStroke libraryBookList">
