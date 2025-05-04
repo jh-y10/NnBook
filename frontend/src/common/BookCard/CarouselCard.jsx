@@ -28,13 +28,11 @@ export default function BookCard({ bookID, libraryBookStatus, email }) {
   if (isError)
     return <Alert variant="danger">불러오기 실패: {error.message}</Alert>;
 
-  if (!bookinfo) return null;
-
   return (
     <div className="bookcard-contents" onClick={() => moveToDetail(bookID)}>
       <img
-        src={bookinfo.cover?.replace("/api/image-proxy?url=", "")}
-        alt={bookinfo.title}
+        src={bookinfo?.cover?.replace("/api/image-proxy?url=", "")}
+        alt={bookinfo?.title}
         className="img-fluid book-cover-img"
         onError={(e) => {
           e.target.src = "/fallback-image.png";

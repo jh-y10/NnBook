@@ -76,7 +76,7 @@ const MeetingList = () => {
   }
 
   return (
-    <Container>
+    <Container className="home-meeting-list">
       <Row>
         <Col lg={12}>
           <h1 className="meeting-title">모임 게시판</h1>
