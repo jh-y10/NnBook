@@ -6,6 +6,16 @@ import { useNavigate } from "react-router";
 export default function BookCard({ book, onClick }) {
   const navigate = useNavigate();
 
+  if (
+    !book ||
+    !book.itemId ||
+    !book.cover ||
+    !book.title ||
+    !book.author
+  ) {
+    return null;
+  }
+
   const goToDetail = () => {
     navigate(`/books/${book.itemId}`);
   }

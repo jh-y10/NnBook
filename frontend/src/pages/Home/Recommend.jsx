@@ -32,7 +32,7 @@ const Recommend = ({ previewCount }) => {
         ))}
       </div>
       <div className="text-end mt-3">
-        <button className="btn-custom" onClick={() => navigate("/recommend")}>
+        <button className="btn-custom recommend-more" onClick={() => navigate("/recommend")}>
           더보기
         </button>
       </div>
