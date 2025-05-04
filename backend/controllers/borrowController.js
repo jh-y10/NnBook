@@ -1,14 +1,12 @@
 import {
-  FetchNewBookLend,
-  fetchAllBookLend,
-  FetchBorrowReq,
-  findBorrowingBook,
   changeLendStatus,
   changeLendStatusFalse,
   deleteBookLend,
+  fetchAllBookLend,
+  FetchBorrowReq,
+  FetchNewBookLend,
+  findBorrowingBook,
 } from "../models/borrowModel.js";
-
-import { db } from "../config/db.js";
 
 //대여도서 등록
 export const addBookLend = async (req, res) => {
@@ -30,9 +28,10 @@ export const addBookLend = async (req, res) => {
 export const getAllBookLend = async (req, res) => {
   try {
     const rows = await fetchAllBookLend();
+    console.log("📦 대여 가능 도서 리스트:", rows);
     res.status(200).json(rows);
   } catch (error) {
-    console.error("대여가능 도서 조회 실패:", error);
+    console.error("❌ 대여가능 도서 조회 실패:", error.message); // ← 에러 로그 더 구체적으로
     res.status(500).json({ message: "서버 오류, 조회 실패" });
   }
 };
