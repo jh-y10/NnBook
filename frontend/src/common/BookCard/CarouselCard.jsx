@@ -28,24 +28,18 @@ export default function BookCard({ bookID, libraryBookStatus, email }) {
   if (isError)
     return <Alert variant="danger">불러오기 실패: {error.message}</Alert>;
 
-  if (!bookinfo) return null;
-
   return (
     <div className="bookcard-contents" onClick={() => moveToDetail(bookID)}>
       <img
-        src={bookinfo.cover?.replace("/api/image-proxy?url=", "")}
-        alt={bookinfo.title}
+        src={bookinfo?.cover?.replace("/api/image-proxy?url=", "")}
+        alt={bookinfo?.title}
         className="img-fluid book-cover-img"
         onError={(e) => {
           e.target.src = "/fallback-image.png";
         }}
       />
-      <h6 className="mt-2 truncate" title={bookinfo.title}>
-        {bookinfo.title}
-      </h6>
-      <p className="text-muted truncate">{bookinfo.author}</p>
       {libraryBookStatus === "finished" && (
-        <button onClick={handleRegisterLend}>대여 등록</button>
+        <button className="lend-btn " onClick={handleRegisterLend}>대여 등록</button>
       )}
     </div>
   );

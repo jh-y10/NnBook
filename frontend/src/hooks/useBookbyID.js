@@ -17,7 +17,9 @@ export default function useBookByID(bookID) {
     queryKey: ["bookByID", bookID],
     queryFn: () => fetchBookByID(bookID),
     select: (result) => {
-      return result.data.item?.[0] || null;
+      if (!result || !result.data || !Array.isArray(result.data.item))
+        return null;
+      return result.data.item[0] || null;
     },
     enabled: !!bookID,
     keepPreviousData: true,

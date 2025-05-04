@@ -72,9 +72,8 @@ body {
 
 .recommend-section {
   margin-top: 2rem;
-  margin-bottom: 200px;
+  margin-bottom: 4rem;
   padding: 0 1rem;
-  font-family: "MaruBuriBold", serif;
 }
 
 .recommend-section h2 {
@@ -118,4 +117,21 @@ body {
   color: #333;
   font-weight: 600;
   line-height: 1.4;
+}
+
+.text-end{
+  margin-top: 3rem !important;
+}
+
+.recommend-more{
+  background-color: #f6a89e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  margin: 0;
+  border-radius: 0.375rem;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
 }
