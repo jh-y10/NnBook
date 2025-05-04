@@ -32,19 +32,30 @@ export const addNewBook = async (bookID, ownerEmail, holderEmail) => {
   return result;
 };
 
-export const changeStatus = async (bookID) => {
+export const changeStatus = async (bookID, email) => {
   const [result] = await db.query(
-    "UPDATE userlibrary SET status = 'finished' WHERE bookID = ?",
-    [bookID]
+    `
+    UPDATE userlibrary
+    SET status = 'finished'
+    WHERE bookId = ?
+      AND (holderEmail = ? OR ownerEmail = ?)
+    `,
+    [bookID, email, email]
   );
   return result;
 };
 
-export const changeLike = async (bookID) => {
+export const changeLike = async (bookID, email) => {
   const [result] = await db.query(
-    "UPDATE userlibrary SET isLiked = true WHERE bookID = ? AND status = 'finished'",
-    [bookID]
+    `
+    UPDATE userlibrary
+    SET isLiked = true, status = 'finished'
+    WHERE bookId = ?
+      AND (ownerEmail = ? OR holderEmail = ?)
+    `,
+    [bookID, email, email]
   );
+  console.log("변경된 행 수:", result.affectedRows);
   return result;
 };
 

@@ -70,7 +70,7 @@
 }
 
 .rental-list {
-  font-family: "MaruBuriBold";
+  font-family: "MaruBuriBold", serif;
   font-size: 26px;
   color: #4b4b4b;
 }
@@ -115,6 +115,10 @@
 }
 
 @media (max-width: 576px) {
+  .rental-container {
+    margin-bottom: 4rem;
+  }
+
   .rental-search-input {
     max-width: 20ch;
     margin-left: 0.5rem;

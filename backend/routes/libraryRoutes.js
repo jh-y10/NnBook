@@ -4,7 +4,7 @@ import {
   addReading,
   getFinished,
   getLendedBooks,
-  changeToFinished,
+  // changeToFinished,
   changeToLiked,
   getLikedBooks,
 } from "../controllers/libraryController.js";
@@ -21,35 +21,35 @@ const router = express.Router();
 router.get("/reading", verifyToken, getReading);
 router.post("/reading", addReading);
 router.get("/finished", verifyToken, getFinished);
-router.patch("/finished", changeToFinished);
+// router.patch("/finished", changeToFinished);
 router.get("/lended", verifyToken, getLendedBooks);
 router.get("/liked", verifyToken, getLikedBooks);
-router.patch("/liked", changeToLiked);
+router.patch("/liked", verifyToken, changeToLiked);
 
-// router.get("/reading", (req, res) => {
-//   const { ownerEmail, holderEmail } = req.query;
-//   res.json({ message: "조회 성공" });
-// });
+router.get("/reading", (req, res) => {
+  const { ownerEmail, holderEmail } = req.query;
+  res.json({ message: "조회 성공" });
+});
 
-// router.post("/reading", (req, res) => {
-//   const { bookID, ownerEmail, holderEmail } = req.body;
-//   res.status(201).json({ message: "책 내서재에 추가됨", bookID });
-// });
+router.post("/reading", (req, res) => {
+  const { bookID, ownerEmail, holderEmail } = req.body;
+  res.status(201).json({ message: "책 내서재에 추가됨", bookID });
+});
 
-// router.get("/finished", (req, res) => {
-//   const { ownerEmail, holderEmail } = req.query;
-//   res.json({ message: "조회 성공", email });
-// });
+router.get("/finished", (req, res) => {
+  const { ownerEmail, holderEmail } = req.query;
+  res.json({ message: "조회 성공", email });
+});
 
-// router.patch("/finished", (req, res) => {
-//   const { bookID } = req.body;
-//   res.status(201).json({ message: "다 읽은 책으로 변경됨", bookID });
-// });
+router.patch("/finished", (req, res) => {
+  const { bookID } = req.body;
+  res.status(201).json({ message: "다 읽은 책으로 변경됨", bookID });
+});
 
-// router.get("/lended", (req, res) => {
-//   const { ownerEmail } = req.query;
-//   res.json({ message: "조회 성공" });
-// });
+router.get("/lended", (req, res) => {
+  const { ownerEmail } = req.query;
+  res.json({ message: "조회 성공" });
+});
 
 router.patch("/liked", (req, res) => {
   const { bookID } = req.body;
