@@ -18,6 +18,7 @@ const Section = ({ title, children }) => (
 const HomePage = () => {
   const [query, setQuery] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const navigate = useNavigate();
   const {
     data: books,
     isLoading,
@@ -35,9 +36,7 @@ const HomePage = () => {
   });
   console.log("검색 요청 상태:", { query, categoryId });
   console.log("불러온 책:", books);
-
-  const navigate = useNavigate();
-
+  
   return (
     <div className="container mt-4">
       <SearchBar
