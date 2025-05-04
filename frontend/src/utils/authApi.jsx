@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authApi = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:5050/api",
+  baseURL: import.meta.env.VITE_BACKEND_URL || "https://nnbook-production.up.railway.app:8080/api",
   timeout: 5000,
 });
 
