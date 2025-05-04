@@ -21,5 +21,5 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(`서버 열림! http://localhost:${PORT}`);
+  console.log(`서버 열림! https://nnbook-production.up.railway.app:8080`);
 });
