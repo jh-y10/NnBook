@@ -6,7 +6,7 @@ const API_KEY = import.meta.env.VITE_APP_API_KEY;
 //console.log("Aladin Base URL:", BASE_URL);
 
 const api = axios.create({
-  baseURL: "/api/aladin",
+  baseURL: "https://nnbook-production.up.railway.app/api/aladin",
   timeout: 5000,
   params: {
     ttbkey: API_KEY,
