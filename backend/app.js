@@ -6,6 +6,7 @@ import borrowRoutes from "./routes/borrowRoutes.js";
 import libraryRoutes from "./routes/libraryRoutes.js";
 import meetingRoutes from "./routes/meetingRoutes.js";
 import myPageRoutes from "./routes/myPageRoutes.js";
+import aladinRouter from "./routes/aladin.js";
 
 dotenv.config();
 
@@ -19,5 +20,6 @@ app.use("/api/mypage", myPageRoutes);
 app.use("/api/library", libraryRoutes);
 app.use("/api/meeting", meetingRoutes);
 app.use("/api/borrow", borrowRoutes);
+app.use("/api/aladin", aladinRouter);
 
 export default app;
