@@ -66,5 +66,15 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: "MaruBuri" serif;
+  font-family: "MaruBuri", serif;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
