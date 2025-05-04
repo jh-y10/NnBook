@@ -18,6 +18,7 @@
   margin: 0;
   width: 200px;
   aspect-ratio: 2 / 3;
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.3);
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 

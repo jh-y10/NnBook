@@ -71,7 +71,7 @@
 }
 
 .book-list-title {
-  font-family: "MaruBuriBold";
+  font-family: "MaruBuriBold", serif;
   font-size: 26px;
   color: #4b4b4b;
 }

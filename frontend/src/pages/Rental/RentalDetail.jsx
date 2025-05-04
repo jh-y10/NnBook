@@ -30,7 +30,7 @@ export default function RentalDetail() {
   //대여신청청
   const startBorrowing = () => {
     borrowBook({ bookId: Number(bookId) });
-    navigate('/library');
+    navigate('/mypage');
   }
 
   if (isLoading) return <p>로딩 중…</p>;
