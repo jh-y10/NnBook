@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authApi = axios.create({
-  baseURL: "https://nnbook-production.up.railway.app:8080/api",
+  baseURL: "https://nnbook-production.up.railway.app/api",
   timeout: 5000,
 });
 
