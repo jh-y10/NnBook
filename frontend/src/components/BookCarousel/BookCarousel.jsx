@@ -1,8 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import useBooks from "../../hooks/useBooks";
+import { Link } from "react-router-dom"; // 수정: react-router-dom
 import "../../styles/BookCarousel.style.css";
-import { Link } from "react-router";
 
 const chunkArray = (array, size) => {
   const result = [];
@@ -12,12 +11,8 @@ const chunkArray = (array, size) => {
   return result;
 };
 
-const BookCarousel = () => {
-  const { data: books, isLoading, error } = useBooks();
-
-  if (isLoading) return <p>로딩 중…</p>;
-  if (error) return <p>{error.message}</p>;
-  if (!books || books.length === 0) return null;
+const BookCarousel = ({ books }) => {
+  if (!books || books.length === 0) return <p>도서가 없습니다.</p>;
 
   const groupedBooks = chunkArray(books, 4);
   const topChunks = groupedBooks.filter((_, i) => i % 2 === 0);
@@ -34,7 +29,7 @@ const BookCarousel = () => {
                 <div className="book-card" key={book.link || i}>
                   <Link to={`/books/${book.itemId}`}>
                     <img
-                      src={book.cover.replace("/cover500/", "/coversum/")}
+                      src={book.cover?.replace("/cover500/", "/coversum/")}
                       alt={book.title}
                     />
                     <div className="book-info">
@@ -58,7 +53,7 @@ const BookCarousel = () => {
                 <div className="book-card" key={book.link || i}>
                   <Link to={`/books/${book.itemId}`}>
                     <img
-                      src={book.cover.replace("/cover500/", "/coversum/")}
+                      src={book.cover?.replace("/cover500/", "/coversum/")}
                       alt={book.title}
                     />
                     <div className="book-info">
