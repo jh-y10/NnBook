@@ -9,7 +9,12 @@ const options = {
       version: "1.0.0",
       description: "✨ 프론트/백엔드 협업을 위한 API 문서입니다.",
     },
-    servers: [{ url: "http://localhost:5050", description: "개발 서버" }],
+    servers: [
+      {
+        url: "https://nnbook-production.up.railway.app:8080",
+        description: "배포 서버",
+      },
+    ],
   },
   apis: ["./routes/*.js"],
 };

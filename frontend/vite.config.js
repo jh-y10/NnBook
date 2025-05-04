@@ -6,13 +6,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/image-proxy": {
-        target: "http://localhost:5050",
+        target: "https://nnbook-production.up.railway.app:8080",
         changeOrigin: true,
       },
       // 추가 백엔드 api
       "/api": {
         //target: "https://www.aladin.co.kr",
-        target:  "http://localhost:5050",
+        target: "https://nnbook-production.up.railway.app:8080",
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, "/ttb/api"),
       },
