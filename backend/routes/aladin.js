@@ -10,8 +10,8 @@ router.get("/ItemSearch.aspx", async (req, res) => {
     const response = await axios.get(`${BASE_URL}/ItemSearch.aspx`, {
       params: {
         ...req.query,
-        ttbkey: process.env.ALADIN_TTB_KEY,
-        output: "js",
+        TTBKey: process.env.ALADIN_TTB_KEY,
+        Output: "JS",
         Version: "20131101",
       },
     });
@@ -28,8 +28,8 @@ router.get("/ItemList.aspx", async (req, res) => {
     const response = await axios.get(`${BASE_URL}/ItemList.aspx`, {
       params: {
         ...req.query,
-        ttbkey: process.env.ALADIN_TTB_KEY,
-        output: "js",
+        TTBKey: process.env.ALADIN_TTB_KEY,
+        Output: "JS",
         Version: "20131101",
       },
     });
@@ -46,8 +46,8 @@ router.get("/ItemLookUp.aspx", async (req, res) => {
     const response = await axios.get(`${BASE_URL}/ItemLookUp.aspx`, {
       params: {
         ...req.query,
-        ttbkey: process.env.ALADIN_TTB_KEY,
-        output: "js",
+        TTBKey: process.env.ALADIN_TTB_KEY,
+        Output: "JS",
         Version: "20131101",
       },
     });
