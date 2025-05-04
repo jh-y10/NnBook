@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosMeetingDB = axios.create({
-  baseURL: "http://localhost:5050/api/meeting",
+  baseURL: "https://nnbook-production.up.railway.app:8080/api/meeting",
   headers: {
     "Content-Type": "application/json",
   },

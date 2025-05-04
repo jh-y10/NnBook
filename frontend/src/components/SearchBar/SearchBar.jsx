@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/SearchBar.style.css";
 
-const categories = [
+export const categories = [
   { id: "", name: "장르" },
   { id: "170", name: "건강/취미" },
   { id: "2105", name: "경제경영" },
