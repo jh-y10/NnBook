@@ -65,12 +65,7 @@ const HomePage = () => {
       <MeetingList />
 
       <Recommend previewCount={4} />
-      <div className="text-end mt-3">
-        <button className="btn-custom" onClick={() => navigate("/recommend")}>
-          더보기
-        </button>
-      </div>
-        <Rental />
+      <Rental />
     </div>
   );
 };

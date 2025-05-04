@@ -68,6 +68,11 @@ body {
   box-sizing: border-box;
 }
 
+.home-meeting-list{
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
 .meeting-title {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -160,7 +165,8 @@ tbody tr td:first-child {
 .add-button-area {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 200px;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .add-button-area button {
