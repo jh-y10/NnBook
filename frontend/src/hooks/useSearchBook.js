@@ -1,4 +1,3 @@
-// hooks/useSearchBook.js
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
 
@@ -23,9 +22,8 @@ export default function useSearchBook(query, categoryId, page = 1, size = 20) {
   return useQuery({
     queryKey: ["book-search", query, categoryId, page, size],
     queryFn: () => fetchSearchBook(query, categoryId, page, size),
-    select: (result) =>
-      Array.isArray(result?.data?.item) ? result.data.item : [],
-    enabled: !!query || !!categoryId,
+    select: (result) => result.data.item,
+    enabled: !!query,
     keepPreviousData: true,
   });
 }

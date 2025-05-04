@@ -2,11 +2,9 @@ import React from "react";
 import { Alert, Spinner } from "react-bootstrap";
 import useBooks from "../../hooks/useBooks";
 import "../../styles/Recommend.style.css";
-import { useNavigate } from "react-router";
 
 const Recommend = ({ previewCount }) => {
   const { data: books, isLoading, error } = useBooks();
-  const navigate = useNavigate();
 
   if (isLoading)
     return (
@@ -35,11 +33,6 @@ const Recommend = ({ previewCount }) => {
             <div className="recommend-card-title">{book.title}</div>
           </div>
         ))}
-      </div>
-      <div className="text-end mt-3">
-        <button className="btn-custom recommend-more" onClick={() => navigate("/recommend")}>
-          더보기
-        </button>
       </div>
     </div>
   );
