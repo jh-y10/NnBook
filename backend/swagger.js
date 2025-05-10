@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://nnbook-production.up.railway.app:8080",
+        url: "https://nnbook-production-863f.up.railway.app:8080",
         description: "배포 서버",
       },
     ],
