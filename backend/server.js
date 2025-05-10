@@ -21,5 +21,7 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(`서버 열림! https://nnbook-production-863f.up.railway.app:8080`);
+  console.log(
+    `서버 열림! https://nnbook-production-863f.up.railway.app:${PORT}`
+  );
 });
