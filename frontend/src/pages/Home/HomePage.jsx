@@ -33,7 +33,12 @@ const HomePage = () => {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-3 homepage-bestseller-title" onClick={() => navigate("/books")}>베스트 셀러</h3>
+      <h3
+        className="mb-3 homepage-bestseller-title"
+        onClick={() => navigate("/books")}
+      >
+        베스트 셀러
+      </h3>
       {isLoading && <p>로딩 중…</p>}
       {error && <p>에러 발생: {error.message}</p>}
 
