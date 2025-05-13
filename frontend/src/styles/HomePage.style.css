@@ -71,6 +71,7 @@
   font-weight: 600;
   color: #4b4b4b;
   padding-inline: 12px;
+  cursor: pointer;
 }
 
 .btn-custom{
