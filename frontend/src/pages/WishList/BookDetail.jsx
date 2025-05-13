@@ -24,14 +24,19 @@ const BookDetail = () => {
     if (!mydata?.email) {
       alert("로그인이 필요합니다.");
       navigate("/login");
+    }else{
+      addBook({ bookID: Number(bookID), email: mydata.email });
     }
-    addBook({ bookID: Number(bookID), email: mydata.email });
   };
 
   //대여신청
   const goToRental = () => {
-    alert("로그인이 필요합니다.");
-    navigate(`/rental/${bookID}`);
+    if (!mydata?.email) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    }else{
+      navigate(`/rental/${bookID}`);
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
