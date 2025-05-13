@@ -30,7 +30,7 @@ const Recommend = ({ previewCount }) => {
               src={book.cover?.replace("/api/image-proxy?url=", "")}
               alt={book.title}
             />
-            <div className="recommend-card-title">{book.title}</div>
+            <div className="recommend-card-title">{book.title?.split(" - ")[0].split(" (")[0]}</div>
           </div>
         ))}
       </div>
