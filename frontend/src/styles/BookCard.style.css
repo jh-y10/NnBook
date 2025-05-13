@@ -10,7 +10,7 @@
 .book-cover-img {
   width: 150px;
   aspect-ratio: 2 / 3;
-  object-fit: contain;
+  object-fit: cover;
   transition: 0.5s ease;
 }
 

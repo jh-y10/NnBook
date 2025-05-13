@@ -79,7 +79,7 @@ const MeetingList = () => {
     <Container className="home-meeting-list">
       <Row>
         <Col lg={12}>
-          <h1 className="meeting-title">모임 게시판</h1>
+          <h1 className="meeting-title" onClick={() => navigate("/meeting")}>모임 게시판</h1>
         </Col>
         <Col lg={12}>
           <table className="meeting-table">
