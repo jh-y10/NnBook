@@ -2,7 +2,8 @@
 import app from "./app.js";
 import { specs, swaggerUi } from "./swagger.js";
 
-const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5050;
 
 app.use(
   "/api-docs",
@@ -21,5 +22,7 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(`서버 열림! https://nnbook-production.up.railway.app:8080`);
+  console.log(
+    `서버 열림! https://nnbook-production-863f.up.railway.app:${PORT}`
+  );
 });

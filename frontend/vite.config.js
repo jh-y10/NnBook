@@ -1,18 +1,21 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
+// const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5050;
+
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
       "/api/image-proxy": {
-        target: "https://nnbook-production.up.railway.app:8080",
+        target: `https://nnbook-production-863f.up.railway.app:${PORT}`,
         changeOrigin: true,
       },
       // 추가 백엔드 api
       "/api": {
         //target: "https://www.aladin.co.kr",
-        target: "https://nnbook-production.up.railway.app:8080",
+        target: `https://nnbook-production-863f.up.railway.app:${PORT}`,
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, "/ttb/api"),
       },

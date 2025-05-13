@@ -36,12 +36,6 @@ export default function Rental() {
         <h4 className="mb-3 rental-list">
           대여 가능 도서 목록{" "}
         </h4>
-        <div
-            className="more-link"
-            onClick={() => navigate('/rental')}
-          >
-            more
-        </div>
       </div>
 
       <Row xs={1} sm={3} md={5} className="gx-1 gy-1 justify-content-center justify-content-sm-start">

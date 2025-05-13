@@ -1,6 +1,9 @@
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
+// const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5050;
+
 const options = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -11,7 +14,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://nnbook-production.up.railway.app:8080",
+        url: `https://nnbook-production-863f.up.railway.app:${PORT}`,
         description: "배포 서버",
       },
     ],
